@@ -1563,15 +1563,18 @@ html[data-theme="terracotta"] .poetic-homeland-banner {
     display: inline-flex !important;
   }
 
-  /* Trình phát nhạc trên điện thoại hiển thị đầy đủ: Phát, Tua -5s/+5s, Thanh thời gian, Âm lượng, Tự lặp, Chọn nhạc */
+  /* STT 1 & STT 5: Thanh trên đầu trang chủ siêu gọn trên điện thoại */
+  #top-compact-utility-bar {
+    padding: 0.3rem 0.5rem !important;
+  }
   #compact-audio-player-bar {
     width: 100% !important;
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
-    padding: 0.35rem 0.5rem !important;
-    gap: 0.3rem !important;
-    border-radius: 1rem !important;
+    padding: 0.25rem 0.4rem !important;
+    gap: 0.25rem !important;
+    border-radius: 0.85rem !important;
   }
   #music-seek-slider {
     width: 4.5rem !important;
@@ -1580,37 +1583,60 @@ html[data-theme="terracotta"] .poetic-homeland-banner {
     width: 3.2rem !important;
   }
 
-  /* Thanh Header & Thanh Mục Lục trên điện thoại gọn gàng, hiển thị đầy đủ nút Tạo Mã QR, Xem tất cả, Mục Lục */
+  /* Thanh Header & Thanh Điều Hướng hợp nhất gọn gàng trên điện thoại (STT 3 & STT 5) */
   #app-header {
-    padding: 0.5rem 0.65rem !important;
-    flex-wrap: wrap !important;
-    gap: 0.4rem !important;
+    padding: 0.35rem 0.6rem !important;
+    flex-wrap: nowrap !important;
+    gap: 0.35rem !important;
+  }
+  #app-header #brand-home-trigger img {
+    width: 2.1rem !important;
+    height: 2.1rem !important;
+  }
+  #app-header .heritage-seal {
+    display: none !important;
   }
   #workspace-nav-bar {
-    position: relative !important;
-    top: auto !important;
-    padding: 0.5rem 0.65rem !important;
-    margin-bottom: 0.45rem !important;
-    flex-wrap: wrap !important;
-    gap: 0.4rem !important;
+    position: sticky !important;
+    top: 2.75rem !important;
+    z-index: 28 !important;
+    padding: 0.4rem 0.55rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  #quick-6-workspaces-strip {
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    gap: 0.35rem !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  #quick-6-workspaces-strip::-webkit-scrollbar {
+    display: none;
+  }
+  #quick-6-workspaces-strip .quick-ws-strip-btn {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.7rem !important;
   }
 
   #hub-view,
   #spoke-view {
-    padding-left: 0.7rem !important;
-    padding-right: 0.7rem !important;
-    padding-top: 0.6rem !important;
+    padding-left: 0.6rem !important;
+    padding-right: 0.6rem !important;
+    padding-top: 0.45rem !important;
   }
   .resp-hero-grid {
     display: flex !important;
     flex-direction: column !important;
-    border-radius: 1.25rem !important;
+    border-radius: 1.15rem !important;
   }
   .resp-hero-media {
-    height: 12.25rem !important;
+    height: 9.25rem !important;
   }
   .resp-hero-body {
-    padding: 0.9rem !important;
+    padding: 0.75rem !important;
   }
   .resp-hero-body h1 {
     font-size: 1.22rem !important;
@@ -1694,48 +1720,94 @@ html[lang="km"] body {
       <div class="festive-stripe"></div>
 
       
-      <div class="bg-[#FEF6E4] border-b border-amber-300/60 px-4 md:px-8 py-2 flex items-center justify-between gap-2 flex-wrap">
-        <div class="flex items-center gap-2 flex-wrap text-[11px] font-bold text-stone-800">
-          <span class="w-5 h-5 rounded-full bg-[#0F4C3A] text-amber-300 flex items-center justify-center text-[10px] shrink-0">
-            <i class="fa-solid fa-seedling"></i>
-          </span>
-          <span class="hidden sm:inline">Bánh Dân Gian Khmer • Trà Vinh • Vĩnh Long • Bến Tre</span>
-          <span id="top-site-views-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-emerald-600/50 text-[#0F4C3A] text-[10px] font-extrabold shadow-sm" title="Lượt xem trang web">
-            <i class="fa-regular fa-eye text-emerald-700"></i>
-            <span id="top-site-views-text">Lượt xem web: 0</span>
-          </span>
-          <span id="top-dish-views-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-400 text-stone-900 text-[10px] font-extrabold shadow-sm" title="Tổng lượt xem các món bánh">
-            <i class="fa-solid fa-utensils text-rose-700"></i>
-            <span id="top-dish-views-text">Lượt xem món: 0</span>
-          </span>
-          <button type="button" id="top-jump-reviews-btn" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-200/90 hover:bg-amber-300 border border-amber-500 text-stone-900 text-[10px] font-extrabold shadow-sm transition-all" title="Xem phần Đánh giá &amp; Bình luận">
-            <i class="fa-solid fa-star text-amber-600"></i>
-            <span id="top-site-rating-text">Đánh giá &amp; Bình luận</span>
-          </button>
-        </div>
+      <!-- STT 1 & STT 5: Thanh tiện ích đầu trang siêu gọn trên cả Điện thoại & Máy tính + Khay tùy chỉnh thu gọn -->
+      <div id="top-compact-utility-bar" class="bg-[#FEF6E4] border-b border-amber-300/70 px-2.5 md:px-6 py-1.5 relative z-40">
+        <div class="flex items-center justify-between gap-1.5 flex-nowrap overflow-x-auto no-scrollbar">
+          <!-- Cụm trái: Thương hiệu rút gọn + Đánh giá nhanh -->
+          <div class="flex items-center gap-1.5 shrink-0 text-[11px] font-bold text-stone-800">
+            <span class="w-5 h-5 rounded-full bg-[#0F4C3A] text-amber-300 flex items-center justify-center text-[10px] shrink-0">
+              <i class="fa-solid fa-seedling"></i>
+            </span>
+            <span class="hidden lg:inline text-[11px] font-extrabold text-[#0F4C3A]">Bánh Dân Gian Khmer • Trà Vinh • Vĩnh Long • Bến Tre</span>
+            <button type="button" id="top-jump-reviews-btn" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-200/90 hover:bg-amber-300 border border-amber-500 text-stone-900 text-[10px] font-extrabold shadow-sm transition-all shrink-0" title="Xem phần Đánh giá &amp; Bình luận">
+              <i class="fa-solid fa-star text-amber-600"></i>
+              <span id="top-site-rating-text">Đánh giá &amp; Bình luận</span>
+            </button>
+          </div>
 
-        <div class="flex items-center gap-1.5 flex-wrap ml-auto">
-          <!-- Trình phát & Tua âm thanh gọn gàng như Video (Phát/Dừng • Tua lùi/tới • Thanh kéo tua thời gian • Âm lượng • Tự lặp • Đổi nhạc) -->
-          <div id="compact-audio-player-bar" class="inline-flex items-center gap-1 bg-white/95 rounded-full px-2 py-0.5 border border-amber-400 shadow-sm flex-wrap sm:flex-nowrap">
-            <button type="button" id="play-homeland-melody-btn" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 flex items-center gap-1 transition-all shrink-0" title="Bật / Tạm dừng nhạc nền">
+          <!-- Cụm phải siêu gọn: Bật nhạc 1 chạm • 3 Ngôn ngữ • Lưu trữ dữ liệu (STT 2) • Tùy chỉnh nhạc/màu • Mục lục -->
+          <div class="flex items-center gap-1 shrink-0 ml-auto">
+            <button type="button" id="play-homeland-melody-btn" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 flex items-center gap-1 transition-all shrink-0 shadow-sm" title="Bật / Tạm dừng nhạc nền">
               <i id="music-play-icon" class="fa-solid fa-play text-amber-300 text-[9px]"></i>
               <span id="homeland-melody-label">Bật Nhạc</span>
             </button>
 
+            <div class="flex items-center gap-0.5 bg-white px-1 py-0.5 rounded-full border border-emerald-600/50 shadow-sm shrink-0" role="group" aria-label="Ngôn ngữ / ភាសា / Language">
+              <button type="button" data-set-lang="vi" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] text-amber-200 transition-all" title="Tiếng Việt (Mặc định - VNĐ)">🇻🇳 Tiếng Việt</button>
+              <button type="button" data-set-lang="km" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-semibold text-stone-700 hover:bg-amber-50 transition-all" title="ភាសាខ្មែរ (Tiếng Khmer)">🇰🇭 ភាសាខ្មែរ</button>
+              <button type="button" data-set-lang="en" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-semibold text-stone-700 hover:bg-amber-50 transition-all" title="American English (USD $ & US Culinary Terms)">🇺🇸 English (US)</button>
+            </div>
+
+            <button
+              type="button"
+              id="open-user-storage-modal-btn"
+              class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 hover:bg-emerald-200 text-[#0F4C3A] border border-emerald-600/60 shadow-sm flex items-center gap-1 transition-all shrink-0"
+              title="Trung tâm Lưu trữ Thông tin Người dùng &amp; Dữ liệu Website"
+            >
+              <i class="fa-solid fa-database text-emerald-800 text-[9px]"></i>
+              <span>Lưu Trữ</span>
+            </button>
+
+            <button
+              type="button"
+              id="toggle-top-settings-popover-btn"
+              class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-white hover:bg-amber-100 text-stone-800 border border-amber-400 shadow-sm flex items-center gap-1 transition-all shrink-0"
+              title="Mở khay chỉnh Nhạc nền chi tiết, Giao diện Sáng/Ấm/Tối &amp; Thống kê lượt xem"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-sliders text-rose-700 text-[9px]"></i>
+              <span class="hidden sm:inline">Tùy chỉnh</span>
+            </button>
+
+            <button
+              type="button"
+              id="top-right-toc-btn"
+              class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 border border-amber-400 shadow-sm flex items-center gap-1 transition-all shrink-0"
+              title="Mở Mục Lục 3 gạch bên phải"
+              aria-label="Mở Mục Lục"
+            >
+              <i class="fa-solid fa-bars text-amber-300 text-[10px]"></i>
+              <span>Mục Lục</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Khay thu gọn thông minh chứa: Bộ chỉnh nhạc chi tiết, Chế độ Màu Sáng/Ấm/Tối và Lượt xem -->
+        <div id="top-settings-popover-panel" class="hidden mt-1.5 pt-2 border-t border-amber-300/70 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span id="top-site-views-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-emerald-600/50 text-[#0F4C3A] text-[10px] font-extrabold shadow-sm" title="Lượt xem trang web">
+              <i class="fa-regular fa-eye text-emerald-700"></i>
+              <span id="top-site-views-text">Lượt xem web: 0</span>
+            </span>
+            <span id="top-dish-views-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-400 text-stone-900 text-[10px] font-extrabold shadow-sm" title="Tổng lượt xem các món bánh">
+              <i class="fa-solid fa-utensils text-rose-700"></i>
+              <span id="top-dish-views-text">Lượt xem món: 0</span>
+            </span>
+          </div>
+
+          <div id="compact-audio-player-bar" class="inline-flex items-center gap-1.5 bg-white/95 rounded-full px-2.5 py-0.5 border border-amber-400 shadow-sm flex-wrap">
             <button type="button" id="music-seek-back-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-stone-800 border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tua lùi 5 giây (-5s)" aria-label="Tua lùi 5 giây">
               <i class="fa-solid fa-backward-step"></i>
             </button>
 
             <div class="flex items-center gap-1.5 px-1 bg-[#FAF6EE] rounded-full py-0.5 border border-amber-300/80" title="Kéo thanh trượt để tua đến bất kỳ đoạn nhạc nào">
-              <input id="music-seek-slider" type="range" min="0" max="1000" value="0" class="w-16 sm:w-24 md:w-28 h-1.5 accent-rose-700 cursor-pointer" aria-label="Thanh tua thời gian nhạc" />
+              <input id="music-seek-slider" type="range" min="0" max="1000" value="0" class="w-16 sm:w-24 h-1.5 accent-rose-700 cursor-pointer" aria-label="Thanh tua thời gian nhạc" />
               <span id="music-time-display" class="text-[9px] font-extrabold text-stone-800 tabular-nums whitespace-nowrap">0:00 / 0:00</span>
             </div>
 
             <button type="button" id="music-seek-fwd-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-stone-800 border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tua tới 5 giây (+5s)" aria-label="Tua tới 5 giây">
               <i class="fa-solid fa-forward-step"></i>
             </button>
-
-            <span class="h-3.5 w-[1px] bg-amber-300/80 hidden sm:inline-block"></span>
 
             <button type="button" id="music-mute-toggle-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-[#0F4C3A] border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tắt / Bật tiếng (Mute/Unmute)" aria-label="Tắt hoặc bật tiếng">
               <i id="music-volume-icon" class="fa-solid fa-volume-low"></i>
@@ -1757,28 +1829,11 @@ html[lang="km"] body {
             </label>
           </div>
 
-          <div class="flex items-center gap-1 bg-white px-1.5 py-0.5 rounded-full border border-emerald-600/50 shadow-sm" role="group" aria-label="Ngôn ngữ / ភាសា / Language">
-            <button type="button" data-set-lang="vi" class="lang-switch-btn px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] text-amber-200 transition-all" title="Tiếng Việt (Mặc định - VNĐ)">🇻🇳 Tiếng Việt</button>
-            <button type="button" data-set-lang="km" class="lang-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700 hover:bg-amber-50 transition-all" title="ភាសាខ្មែរ (Tiếng Khmer)">🇰🇭 ភាសាខ្មែរ</button>
-            <button type="button" data-set-lang="en" class="lang-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700 hover:bg-amber-50 transition-all" title="American English (USD $ & US Culinary Terms)">🇺🇸 English (US)</button>
-          </div>
-
           <div class="flex items-center gap-1 bg-white px-1.5 py-0.5 rounded-full border border-amber-400/60" role="group" aria-label="Giao diện">
             <button type="button" data-set-theme="indochine" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] text-amber-200">Màu Sáng</button>
             <button type="button" data-set-theme="terracotta" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700">Màu Ấm</button>
             <button type="button" data-set-theme="night" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700">Màu Tối</button>
           </div>
-
-          <button
-            type="button"
-            id="top-right-toc-btn"
-            class="px-3 py-1 rounded-full text-[11px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 border border-amber-400 shadow-sm flex items-center gap-1.5 transition-all"
-            title="Mở Mục Lục 3 gạch bên phải"
-            aria-label="Mở Mục Lục"
-          >
-            <i class="fa-solid fa-bars text-amber-300 text-xs"></i>
-            <span>Mục Lục</span>
-          </button>
         </div>
       </div>
 
@@ -1851,23 +1906,30 @@ html[lang="km"] body {
             </p>
 
             
-            <div class="poetic-homeland-banner rounded-2xl px-3.5 py-2.5 mb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div class="flex items-start gap-2.5">
-                <span class="w-8 h-8 rounded-xl bg-[#0F4C3A] text-amber-300 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                  <i class="fa-solid fa-feather-pointed text-xs"></i>
-                </span>
-                <div class="font-serif-heritage italic text-xs md:text-[13px] text-[#0F4C3A] leading-snug">
-                  <span id="poetic-verse-line-1" class="block font-semibold">"Sông Cổ Chiên chở nặng phù sa, khói bếp Trà Cuôn ấm nghĩa nhà,</span>
-                  <span id="poetic-verse-line-2" class="block font-semibold">Cốm dẹp trăng rằm thơm xứ sở, ngọt lành hồn bánh đất ông cha."</span>
+            <details id="hero-poem-collapsible" class="mb-2.5 group">
+              <summary class="cursor-pointer list-none inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#0F4C3A] bg-amber-100/80 hover:bg-amber-200/80 px-2.5 py-1 rounded-xl border border-amber-300/80 transition-all">
+                <i class="fa-solid fa-feather-pointed text-rose-700 text-[10px]"></i>
+                <span>Thơ quê hương &amp; Cảm hứng văn hóa</span>
+                <i class="fa-solid fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+              </summary>
+              <div class="poetic-homeland-banner rounded-2xl px-3.5 py-2.5 mt-1.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-start gap-2.5">
+                  <span class="w-8 h-8 rounded-xl bg-[#0F4C3A] text-amber-300 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                    <i class="fa-solid fa-feather-pointed text-xs"></i>
+                  </span>
+                  <div class="font-serif-heritage italic text-xs md:text-[13px] text-[#0F4C3A] leading-snug">
+                    <span id="poetic-verse-line-1" class="block font-semibold">"Sông Cổ Chiên chở nặng phù sa, khói bếp Trà Cuôn ấm nghĩa nhà,</span>
+                    <span id="poetic-verse-line-2" class="block font-semibold">Cốm dẹp trăng rằm thơm xứ sở, ngọt lành hồn bánh đất ông cha."</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
+                  <button type="button" id="hero-next-poem-btn" class="px-2.5 py-1 rounded-xl bg-white/90 hover:bg-amber-100 text-stone-800 border border-amber-400/70 text-[10px] font-extrabold flex items-center gap-1" title="Đổi câu thơ quê hương">
+                    <i class="fa-solid fa-wand-sparkles text-rose-700"></i>
+                    <span>Thơ quê</span>
+                  </button>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
-                <button type="button" id="hero-next-poem-btn" class="px-2.5 py-1 rounded-xl bg-white/90 hover:bg-amber-100 text-stone-800 border border-amber-400/70 text-[10px] font-extrabold flex items-center gap-1" title="Đổi câu thơ quê hương">
-                  <i class="fa-solid fa-wand-sparkles text-rose-700"></i>
-                  <span>Thơ quê</span>
-                </button>
-              </div>
-            </div>
+            </details>
 
             <div class="grid grid-cols-3 gap-2 bg-white p-2 rounded-2xl border border-amber-300/80 shadow-sm mb-3">
               <button type="button" data-hero-region="tra-vinh" class="hero-region-jump-btn p-1.5 rounded-xl hover:bg-emerald-50 transition-all flex items-center gap-2 text-left">
@@ -1929,71 +1991,82 @@ html[lang="km"] body {
         </section>
 
         
-        <nav id="workspace-nav-bar" class="quick-nav-dock rounded-2xl px-3.5 py-2.5 mb-5 flex items-center justify-between gap-2 sticky top-16 z-20 shadow-sm" aria-label="Thanh Mục Lục">
-          <div class="flex items-center gap-2.5 min-w-0">
-            <span class="w-8 h-8 rounded-xl bg-[#0F4C3A] text-amber-300 flex items-center justify-center shrink-0 shadow-sm">
-              <i id="active-ws-icon" class="fa-solid fa-utensils text-xs"></i>
-            </span>
-            <div class="min-w-0">
-              <div class="text-[10px] font-extrabold uppercase tracking-wider text-stone-500 leading-none">
-                Đang hiển thị mục
+        <!-- STT 3: Thanh điều hướng hợp nhất thông minh, gọn gàng, tiện lợi trên cả Điện thoại & Máy tính -->
+        <nav id="workspace-nav-bar" class="quick-nav-dock rounded-2xl px-3 py-2 mb-4 sticky top-12 z-20 shadow-sm bg-[#FFFDF8]/95 backdrop-blur-md border border-amber-300/90 space-y-1.5" aria-label="Thanh Điều Hướng Thông Minh">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-7 h-7 rounded-xl bg-[#0F4C3A] text-amber-300 flex items-center justify-center shrink-0 shadow-sm">
+                <i id="active-ws-icon" class="fa-solid fa-utensils text-[11px]"></i>
+              </span>
+              <div class="min-w-0 flex items-center gap-1.5 flex-wrap">
+                <span class="hidden md:inline text-[10px] font-extrabold uppercase tracking-wider text-stone-500">Đang hiển thị mục:</span>
+                <div id="active-ws-title-label" class="text-xs sm:text-sm font-extrabold text-[#0F4C3A] truncate">
+                  1. Danh Mục Bánh Truyền Thống
+                </div>
               </div>
-              <div id="active-ws-title-label" class="text-xs sm:text-sm font-extrabold text-[#0F4C3A] truncate mt-0.5">
-                1. Danh Mục Bánh Truyền Thống
-              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                id="nav-open-storage-btn"
+                class="inline-flex shrink-0 px-2.5 py-1.5 rounded-xl text-[11px] font-extrabold bg-emerald-50 hover:bg-emerald-100 text-[#0F4C3A] border border-emerald-600/50 items-center gap-1 transition-all"
+                title="Mở Trung tâm Lưu trữ Thông tin Người dùng &amp; Dữ liệu Website"
+              >
+                <i class="fa-solid fa-database text-emerald-700 text-[10px]"></i>
+                <span>Dữ Liệu &amp; Hồ Sơ</span>
+              </button>
+
+              <button
+                type="button"
+                id="toggle-all-workspaces-btn"
+                class="inline-flex shrink-0 px-2.5 py-1.5 rounded-xl text-[11px] font-extrabold bg-amber-100 hover:bg-amber-200 text-stone-800 border border-amber-400/70 items-center gap-1 transition-all"
+                title="Chuyển giữa chế độ Xem gọn từng mục và Xem tất cả"
+              >
+                <i class="fa-solid fa-layer-group text-[#0F4C3A] text-[10px]"></i>
+                <span id="toggle-all-ws-label">Xem từng mục</span>
+              </button>
+
+              <button
+                type="button"
+                id="ws-open-toc-drawer-btn"
+                class="pop-btn shrink-0 px-3 py-1.5 rounded-xl text-[11px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 border border-amber-400 flex items-center gap-1.5 shadow-sm transition-all"
+                title="Ấn vào biểu tượng 3 gạch bên phải để mở Mục Lục các phần trong website"
+              >
+                <i class="fa-solid fa-bars text-amber-300 text-xs"></i>
+                <span>Mục Lục</span>
+              </button>
             </div>
           </div>
 
-          <div class="flex items-center gap-2 shrink-0">
-            <button
-              type="button"
-              id="toggle-all-workspaces-btn"
-              class="inline-flex shrink-0 px-3 py-2 rounded-xl text-xs font-extrabold bg-amber-100 hover:bg-amber-200 text-stone-800 border border-amber-400/70 items-center gap-1.5 transition-all"
-              title="Chuyển giữa chế độ Xem gọn từng mục và Xem tất cả"
-            >
-              <i class="fa-solid fa-layer-group text-[#0F4C3A]"></i>
-              <span id="toggle-all-ws-label">Xem từng mục</span>
+          <!-- Dải 6 chuyên mục nằm gọn ngay trong thanh điều hướng -->
+          <div id="quick-6-workspaces-strip" class="!mb-0 !p-1 !bg-[#FAF4E8]/90 !rounded-xl !border-amber-200/80" aria-label="Chuyển nhanh 6 chuyên mục">
+            <button type="button" data-strip-ws="catalog" class="quick-ws-strip-btn active-strip-ws">
+              <i class="fa-solid fa-utensils text-amber-500"></i>
+              <span>1. Danh Mục Bánh</span>
             </button>
-
-            <button
-              type="button"
-              id="ws-open-toc-drawer-btn"
-              class="pop-btn shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 border border-amber-400 flex items-center gap-2 shadow-sm transition-all"
-              title="Ấn vào biểu tượng 3 gạch bên phải để mở Mục Lục các phần trong website"
-            >
-              <i class="fa-solid fa-bars text-amber-300 text-sm"></i>
-              <span>Mục Lục</span>
-                          </button>
+            <button type="button" data-strip-ws="map-archive" class="quick-ws-strip-btn">
+              <i class="fa-solid fa-map-location-dot text-emerald-700"></i>
+              <span>2. Bản Đồ &amp; Lưu Giữ</span>
+            </button>
+            <button type="button" data-strip-ws="taste-versus" class="quick-ws-strip-btn">
+              <i class="fa-solid fa-palette text-rose-700"></i>
+              <span>3. Chọn Bánh &amp; So Sánh</span>
+            </button>
+            <button type="button" data-strip-ws="lookup" class="quick-ws-strip-btn">
+              <i class="fa-solid fa-magnifying-glass-chart text-amber-700"></i>
+              <span>4. Tìm Kiếm &amp; Nguyên Liệu</span>
+            </button>
+            <button type="button" data-strip-ws="festival-passport" class="quick-ws-strip-btn">
+              <i class="fa-solid fa-passport text-amber-600"></i>
+              <span>5. Lễ Hội &amp; Đố Vui</span>
+            </button>
+            <button type="button" data-strip-ws="tk-smart-hub" class="quick-ws-strip-btn">
+              <i class="fa-solid fa-comments text-emerald-700"></i>
+              <span>6. Trợ Lý Trường Khánh</span>
+            </button>
           </div>
         </nav>
-
-        <!-- Thanh chuyển nhanh đầy đủ 6 chuyên mục (Hiển thị trực quan trên cả Điện thoại & Máy tính) -->
-        <div id="quick-6-workspaces-strip" aria-label="Chuyển nhanh 6 chuyên mục">
-          <button type="button" data-strip-ws="catalog" class="quick-ws-strip-btn active-strip-ws">
-            <i class="fa-solid fa-utensils text-amber-500"></i>
-            <span>1. Danh Mục Bánh</span>
-          </button>
-          <button type="button" data-strip-ws="map-archive" class="quick-ws-strip-btn">
-            <i class="fa-solid fa-map-location-dot text-emerald-700"></i>
-            <span>2. Bản Đồ &amp; Lưu Giữ</span>
-          </button>
-          <button type="button" data-strip-ws="taste-versus" class="quick-ws-strip-btn">
-            <i class="fa-solid fa-palette text-rose-700"></i>
-            <span>3. Chọn Bánh &amp; So Sánh</span>
-          </button>
-          <button type="button" data-strip-ws="lookup" class="quick-ws-strip-btn">
-            <i class="fa-solid fa-magnifying-glass-chart text-amber-700"></i>
-            <span>4. Tìm Kiếm &amp; Nguyên Liệu</span>
-          </button>
-          <button type="button" data-strip-ws="festival-passport" class="quick-ws-strip-btn">
-            <i class="fa-solid fa-passport text-amber-600"></i>
-            <span>5. Lễ Hội &amp; Đố Vui</span>
-          </button>
-          <button type="button" data-strip-ws="tk-smart-hub" class="quick-ws-strip-btn">
-            <i class="fa-solid fa-comments text-emerald-700"></i>
-            <span>6. Trợ Lý Trường Khánh</span>
-          </button>
-        </div>
 
 
         
@@ -2429,6 +2502,128 @@ html[lang="km"] body {
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div id="cake-lightbox-body"></div>
+    </div>
+  </div>
+
+  <!-- STT 2: Trung Tâm Lưu Trữ Thông Tin Người Dùng & Dữ Liệu Website -->
+  <div id="user-data-storage-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-5 modal-backdrop">
+    <div class="bg-[#FDFBF4] border-2 border-[#0F4C3A] rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-4 sm:p-6 relative space-y-4">
+      <div class="flex items-start justify-between gap-3 border-b border-amber-300/80 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-10 h-10 rounded-2xl bg-[#0F4C3A] text-amber-300 flex items-center justify-center text-base shrink-0 shadow-sm">
+            <i class="fa-solid fa-database"></i>
+          </span>
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-500/40">
+              Lưu Trữ Đồng Bộ LocalStorage &amp; IndexedDB
+            </span>
+            <h3 class="font-serif-heritage text-lg sm:text-xl font-bold text-[#0F4C3A] mt-0.5">
+              Lưu Trữ Thông Tin Người Dùng &amp; Dữ Liệu Website
+            </h3>
+          </div>
+        </div>
+        <button type="button" id="close-user-storage-modal-btn" class="w-8 h-8 rounded-full bg-stone-200 hover:bg-rose-700 hover:text-white text-stone-800 flex items-center justify-center font-bold transition-all" aria-label="Đóng bảng lưu trữ">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Cột 1: Thông tin người dùng -->
+        <div class="bg-white rounded-2xl p-4 border border-amber-300/90 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs sm:text-sm font-extrabold text-[#0F4C3A] flex items-center gap-1.5">
+              <i class="fa-solid fa-user-check text-emerald-700"></i>
+              <span>Hồ Sơ Thông Tin Người Dùng</span>
+            </h4>
+            <span id="user-profile-saved-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-300">Đã tự động lưu</span>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <div>
+              <label for="up-fullname-input" class="block font-bold text-stone-700 mb-0.5">Họ và tên người dùng</label>
+              <input id="up-fullname-input" type="text" placeholder="Nhập họ tên của bạn..." class="w-full px-3 py-1.5 rounded-xl border border-stone-300 focus:border-[#0F4C3A] outline-none font-semibold text-stone-900" />
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label for="up-role-select" class="block font-bold text-stone-700 mb-0.5">Vai trò</label>
+                <select id="up-role-select" class="w-full px-2.5 py-1.5 rounded-xl border border-stone-300 focus:border-[#0F4C3A] outline-none font-semibold text-stone-900 bg-white">
+                  <option value="Học sinh / Sinh viên">Học sinh / Sinh viên</option>
+                  <option value="Giáo viên / Giảng viên">Giáo viên / Giảng viên</option>
+                  <option value="Du khách / Thực khách">Du khách / Thực khách</option>
+                  <option value="Nghệ nhân làm bánh">Nghệ nhân làm bánh</option>
+                  <option value="Nhà nghiên cứu văn hóa">Nhà nghiên cứu văn hóa</option>
+                </select>
+              </div>
+              <div>
+                <label for="up-region-select" class="block font-bold text-stone-700 mb-0.5">Khu vực yêu thích</label>
+                <select id="up-region-select" class="w-full px-2.5 py-1.5 rounded-xl border border-stone-300 focus:border-[#0F4C3A] outline-none font-semibold text-stone-900 bg-white">
+                  <option value="Khu vực Trà Vinh">Khu vực Trà Vinh</option>
+                  <option value="Khu vực Vĩnh Long">Khu vực Vĩnh Long</option>
+                  <option value="Khu vực Bến Tre">Khu vực Bến Tre</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="up-school-org-input" class="block font-bold text-stone-700 mb-0.5">Trường / Đơn vị / Địa phương</label>
+              <input id="up-school-org-input" type="text" placeholder="VD: Vĩnh Long / Trà Vinh / Bến Tre..." class="w-full px-3 py-1.5 rounded-xl border border-stone-300 focus:border-[#0F4C3A] outline-none font-semibold text-stone-900" />
+            </div>
+            <div>
+              <label for="up-fav-note-input" class="block font-bold text-stone-700 mb-0.5">Ghi chú ẩm thực &amp; Món bánh yêu thích</label>
+              <textarea id="up-fav-note-input" rows="2" placeholder="Ghi chú cá nhân hoặc khẩu vị yêu thích..." class="w-full px-3 py-1.5 rounded-xl border border-stone-300 focus:border-[#0F4C3A] outline-none font-semibold text-stone-900"></textarea>
+            </div>
+            <button type="button" id="save-user-profile-btn" class="w-full py-2 rounded-xl bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
+              <i class="fa-solid fa-floppy-disk text-amber-300"></i>
+              <span>Lưu Thông Tin Người Dùng</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Cột 2: Thống kê & Sao lưu Dữ liệu Website -->
+        <div class="bg-white rounded-2xl p-4 border border-emerald-600/40 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="space-y-2.5">
+            <h4 class="text-xs sm:text-sm font-extrabold text-[#0F4C3A] flex items-center gap-1.5">
+              <i class="fa-solid fa-hard-drive text-rose-700"></i>
+              <span>Trạng Thái Dữ Liệu Website Đang Lưu</span>
+            </h4>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-200">
+                <div class="text-[10px] font-bold text-stone-600">Lượt xem trang web</div>
+                <div id="storage-stat-site-views" class="text-base font-black text-[#0F4C3A]">0</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200">
+                <div class="text-[10px] font-bold text-stone-600">Lượt xem 12 món bánh</div>
+                <div id="storage-stat-dish-views" class="text-base font-black text-rose-700">0</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200">
+                <div class="text-[10px] font-bold text-stone-600">Món yêu thích &amp; Đã thử</div>
+                <div id="storage-stat-fav-passport" class="text-sm font-black text-stone-900">0 món</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-stone-100 border border-stone-300">
+                <div class="text-[10px] font-bold text-stone-600">Đánh giá &amp; Ghi chú bếp</div>
+                <div id="storage-stat-reviews-notes" class="text-sm font-black text-stone-900">0 mục</div>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#FAF6EE] border border-amber-300/80 text-[11px] text-stone-700 leading-relaxed">
+              <i class="fa-solid fa-shield-halved text-emerald-700 mr-1"></i>
+              Toàn bộ thông tin người dùng, lịch sử xem món, đánh giá sao, hộ chiếu ẩm thực và ghi chú công thức được lưu bền vững ngay trên trình duyệt của bạn.
+            </div>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-stone-200">
+            <div class="flex items-center gap-2 flex-wrap">
+              <button type="button" id="export-site-data-json-btn" class="flex-1 py-2 px-3 rounded-xl bg-amber-300 hover:bg-amber-400 text-stone-900 font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
+                <i class="fa-solid fa-file-export text-rose-700"></i>
+                <span>Tải Bản Sao Lưu (.JSON)</span>
+              </button>
+              <label for="import-site-data-file-input" id="import-site-data-json-btn" class="cursor-pointer flex-1 py-2 px-3 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-[#0F4C3A] border border-emerald-500/50 font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
+                <i class="fa-solid fa-file-import text-emerald-800"></i>
+                <span>Khôi Phục Dữ Liệu</span>
+              </label>
+              <input id="import-site-data-file-input" type="file" accept=".json,application/json" class="hidden" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -5786,6 +5981,107 @@ function generateTkAdvisorAnswer(userQuery, dishesData) {
       ? `*Interpreted your shorthand: "${expandedRaw}"*\n\n`
       : (isKm ? `*បានយល់សំណួររបស់អ្នក៖ "${expandedRaw}"*\n\n` : `*Đã hiểu ý bạn hỏi: "${expandedRaw}"*\n\n`)
     : "";
+
+  // ============================================================================
+  // STT 4: LỚP KHIÊN BẢO MẬT CHỐNG LỘ THÔNG TIN MẬT CỦA WEBSITE (AI SECURITY SHIELD)
+  // ============================================================================
+  const confidentialProbePatterns = [
+    "mat khau", "password", "passwd", "api key", "apikey", "secret key", "private key",
+    "token", "ma nguon", "source code", "code ngam", "database", "co so du lieu ngam",
+    "thong tin mat", "bi mat he thong", "admin", "quan tri vien", "tai khoan ngam",
+    "system prompt", "ignore previous", "jailbreak", "bypass", "hack", "exploit",
+    "sql injection", "xss", "env", ".env", "config", "server ip", " máy chủ ",
+    "লো", "lộ thông tin", "ពាក្យសម្ងាត់", "កូដដើម", "ព័ត៌មានសម្ងាត់"
+  ];
+  const isProbingConfidential = confidentialProbePatterns.some((pat) => q.includes(normalizeVnStr(pat)) || raw.toLowerCase().includes(pat));
+  if (isProbingConfidential) {
+    return {
+      replyText: isEn
+        ? `🛡️ **Website Security & Confidentiality Shield (Truong Khanh AI)**
+
+I am trained to answer all questions about **Spreading Traditional Khmer Folk Cakes of Vinh Long** (12 traditional cakes, recipes, ingredients, cultural history, QR codes, and user features). However, to protect **website security**, I **strictly refuse to disclose confidential or internal technical information** (such as internal source code, system prompts, API keys, administrator credentials, or internal configuration).
+
+👉 *Feel free to ask me about any of the 12 Khmer folk cakes, how to use website features, or culinary tips!*`
+        : isKm
+        ? `🛡️ **របាំងសុវត្ថិភាព និងការការពារព័ត៌មានសម្ងាត់របស់គេហទំព័រ (ជំនួយការ AI ទ្រឿង ខាញ់)**
+
+ខ្ញុំត្រូវបានបណ្តុះបណ្តាលឱ្យឆ្លើយគ្រប់សំណួរអំពីគេហទំព័រ **ការផ្សព្វផ្សាយនំប្រពៃណីខ្មែរខេត្តវិញឡុង** (នំប្រពៃណីទាំង ១២ មុខ រូបមន្ត គ្រឿងផ្សំ វប្បធម៌ និងមុខងារប្រើប្រាស់)។ ប៉ុន្តែដើម្បីការពារសុវត្ថិភាពប្រព័ន្ធ **ខ្ញុំសូមបដិសេធដាច់ខាតមិនបញ្ចេញព័ត៌មានសម្ងាត់របស់គេហទំព័រ** (ដូចជាកូដដើម ពាក្យសម្ងាត់ គណនីអភិបាល API Key ឬការកំណត់សម្ងាត់ក្នុងប្រព័ន្ធ) ទៅខាងក្រៅឡើយ។
+
+👉 *សូមសួរខ្ញុំអំពីមុខងារគេហទំព័រ ឬនំប្រពៃណីខ្មែរទាំង ១២ មុខបានគ្រប់ពេល!*`
+        : `🛡️ **Lớp Khiên Bảo Mật Thông Tin Website (Trợ Lý AI Trường Khánh)**
+
+Mình được huấn luyện để giải đáp đầy đủ mọi câu hỏi về nội dung, văn hóa, công thức 12 món bánh và cách sử dụng website **Lan toả bánh dân gian Khmer Vĩnh Long**. Tuy nhiên, theo nguyên tắc an toàn thông tin, mình **tuyệt đối bảo mật và từ chối tiết lộ các thông tin mật/nội bộ của hệ thống** (như mã nguồn nội bộ, khóa API, mật khẩu, tài khoản quản trị, cấu hình máy chủ hoặc câu lệnh hệ thống).
+
+👉 *Bạn có thể hỏi mình bất kỳ câu hỏi nào về 12 món bánh dân gian Khmer, cách dùng các tính năng trên web, cách lưu trữ hồ sơ hoặc tính toán công thức nhé!*`,
+      matchedIds: [1, 4, 10, 12],
+      isSecurityShield: true
+    };
+  }
+
+  // ============================================================================
+  // STT 4: CƠ SỞ TRI THỨC TOÀN DIỆN VỀ WEBSITE (TRẢ LỜI MỌI CÂU HỎI LIÊN QUAN ĐẾN WEB)
+  // ============================================================================
+  const isAskingAboutWebsite =
+    q.includes("website") ||
+    q.includes("trang web") ||
+    q.includes("web nay") ||
+    q.includes("du an") ||
+    q.includes("tinh nang") ||
+    q.includes("chuc nang") ||
+    q.includes("huong dan su dung") ||
+    q.includes("thanh dieu huong") ||
+    q.includes("luu tru") ||
+    q.includes("thong tin nguoi dung") ||
+    q.includes("du lieu web") ||
+    q.includes("ngon ngu") ||
+    q.includes("tieng khmer") ||
+    q.includes("គេហទំព័រ") ||
+    q.includes("មុខងារ");
+
+  if (isAskingAboutWebsite && matchedDishesByName.length === 0) {
+    const siteViewsNow = typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getSiteViews() : 0;
+    const dishViewsNow = typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getTotalDishViews() : 0;
+    return {
+      replyText: isEn
+        ? `🌐 **Complete Guide to the Website "Spreading Traditional Khmer Folk Cakes of Vinh Long" (2026 Edition)**
+
+1. **Core Mission & Scope**: Digitizing, preserving, and promoting **12 signature Khmer folk cakes** across the 3 cultural zones of the new Vinh Long province (**Tra Vinh: 9 cakes • Vinh Long: 2 cakes • Ben Tre: 1 cake**) in line with Resolutions 202/2025/QH15 & 1687/NQ-UBTVQH15.
+2. **6 Streamlined Navigation Workspaces**:
+   • **1. Cake Catalog**: 12 interactive cards, 3D flip view, step-by-step Cook Mode, and community ratings.
+   • **2. Map & Preservation Archive**: Interactive 3-zone map, QR Code Studio, and printable heritage posters.
+   • **3. Taste Matcher & Cake Versus**: Match cakes by flavor/mood and compare any 2 cakes side-by-side.
+   • **4. Lookup & Local Ingredients**: Encyclopedia of 9 indigenous ingredients and dietary filters.
+   • **5. Festival Calendar & Quiz**: Khmer festival calendar (Chol Chnam Thmay, Sene Dolta, Ok Om Bok), Tasting Passport, and cultural quiz.
+   • **6. Truong Khanh AI Smart Hub**: Recipe scaling, business profit calculator, pantry matcher, and confidentiality-protected AI Q&A.
+3. **User Info & Website Data Storage**: Click **"Lưu Trữ" (Storage)** on the top bar to save your user profile, view live stats (**${siteViewsNow}** web views, **${dishViewsNow}** dish views), or export/import JSON backups.
+4. **100% Trilingual Support**: Instant switching between **Vietnamese (🇻🇳) • 100% Khmer (🇰🇭) • English (🇺🇸)**.`
+        : isKm
+        ? `🌐 **មគ្គុទ្ទេសក៍ពេញលេញអំពីគេហទំព័រ "ការផ្សព្វផ្សាយនំប្រពៃណីខ្មែរខេត្តវិញឡុង" (កំណែ ២០២៦)**
+
+1. **គោលបំណង និងវិសាលភាព**៖ អភិរក្ស និងផ្សព្វផ្សាយ **នំប្រពៃណីខ្មែរចំនួន ១២ មុខ** នៅទូទាំងតំបន់វប្បធម៌ទាំង ៣ នៃខេត្តវិញឡុងថ្មី (**ត្រាវិញ ៩ មុខ • វិញឡុង ២ មុខ • បេនត្រេ ១ មុខ**)។
+2. **ផ្នែកមុខងារសំខាន់ៗទាំង ៦ លើរបាររុករក**៖
+   • **១. បញ្ជីនំប្រពៃណី**៖ កាតនំទាំង ១២ មុខ មុខងារចូលចង្ក្រានធ្វើនំ និងការវាយតម្លៃផ្កាយ។
+   • **២. ផែនទី និងការអភិរក្ស**៖ ផែនទីអន្តរកម្ម ៣ តំបន់ និងការបង្កើត/ស្កេនកូដ QR។
+   • **៣. ជ្រើសរើសរសជាតិ និងប្រៀបធៀបនំ**៖ ប្រៀបធៀបនំ ២ មុខយ៉ាងលម្អិត។
+   • **៤. ស្វែងរក និងគ្រឿងផ្សំ**៖ វចនានុក្រមគ្រឿងផ្សំធម្មជាតិទាំង ៩ មុខ។
+   • **៥. ពិធីបុណ្យ និងល្បែងសំណួរ**៖ ប្រតិទិនបុណ្យខ្មែរ លិខិតឆ្លងដែនម្ហូបអាហារ និងសំណួរវប្បធម៌។
+   • **៦. ជំនួយការ ទ្រឿង ខាញ់ (AI)**៖ គណនាគ្រឿងផ្សំ គណនាប្រាក់ចំណេញ និងឆ្លើយសំណួរដោយមានរបាំងការពារព័ត៌មានសម្ងាត់។
+3. **ការរក្សាទុកព័ត៌មានអ្នកប្រើប្រាស់ និងទិន្នន័យគេហទំព័រ**៖ ចុចប៊ូតុង **"រក្សាទុក" (Lưu Trữ)** នៅរបារខាងលើ ដើម្បីរក្សាទុកប្រវត្តិរូបអ្នកប្រើប្រាស់ មើលស្ថិតិ (**${siteViewsNow}** ចំនួនមើលគេហទំព័រ) និងទាញយកឯកសារបម្រុងទុក (.JSON)។`
+        : `🌐 **Tổng Quan Toàn Diện Về Website "Lan Toả Bánh Dân Gian Khmer Vĩnh Long" (Phiên Bản Cải Tiến 2026)**
+
+1. **Mục tiêu & Phạm vi dự án**: Số hóa, bảo tồn và lan tỏa **12 món bánh truyền thống Khmer** đặc trưng thuộc 3 vùng văn hóa của tỉnh Vĩnh Long mới (**Trà Vinh: 9 món • Vĩnh Long: 2 món • Bến Tre: 1 món**) theo Nghị quyết 202/2025/QH15 & 1687/NQ-UBTVQH15.
+2. **6 Chuyên mục trên Thanh điều hướng gọn mới**:
+   • **1. Danh Mục Bánh**: Tra cứu 12 món bánh, lật thẻ 3D, chế độ Vào Bếp từng bước có hẹn giờ và Đánh giá cộng đồng.
+   • **2. Bản Đồ & Lưu Giữ**: Sơ đồ tương tác 3 khu vực, tạo & quét mã QR từng món, khung thông tin lưu giữ di sản.
+   • **3. Chọn Bánh & So Sánh**: Gợi ý bánh theo khẩu vị và đặt 2 món bánh lên bàn cân đối chiếu.
+   • **4. Tìm Kiếm & Nguyên Liệu**: Từ điển 9 nguyên liệu bản địa (lá bù ngót, đường thốt nốt, nếp sáp...) và bộ lọc thông minh.
+   • **5. Lễ Hội & Đố Vui**: Lịch lễ hội Khmer (Chol Chnam Thmay, Sene Dolta, Ok Om Bok), Hộ chiếu ẩm thực & Trắc nghiệm.
+   • **6. Trợ Lý Trường Khánh (AI)**: Tính nguyên liệu theo mẻ, tính lời lãi kinh doanh, tìm bánh theo tủ bếp, thiết kế Poster & Hỏi đáp AI có khiên bảo mật.
+3. **Trung tâm Lưu trữ Người dùng & Dữ liệu Website**: Bấm nút **"Lưu Trữ"** trên thanh đầu trang để lưu hồ sơ cá nhân, theo dõi thống kê trực tiếp (**${siteViewsNow}** lượt xem web, **${dishViewsNow}** lượt xem món) và xuất/nhập file sao lưu \`.JSON\`.
+4. **Đa ngôn ngữ 100%**: Chuyển đổi tức thì **Tiếng Việt (🇻🇳) • Tiếng Khmer 100% (🇰🇭) • Tiếng Anh (🇺🇸)**.`,
+      matchedIds: [1, 4, 10, 12]
+    };
+  }
 
   if (!q) {
     return {
@@ -27846,6 +28142,255 @@ listContainer.querySelectorAll(".open-detail-btn").forEach((btn) => {
     setActiveMobDock("mob-nav-toc-btn");
     if (typeof openRightTocDrawer === "function") openRightTocDrawer();
   });
+
+  // ============================================================================
+  // BỔ SUNG TỪ ĐIỂN DỊCH KHMER & ANH CHO CÁC TÍNH NĂNG MỚI (STT 1 -> STT 5)
+  // ============================================================================
+  Object.assign(VI_TO_KM_UI_PHRASES, {
+    "Lưu Trữ": "រក្សាទុកទិន្នន័យ",
+    "Tùy chỉnh": "កំណត់",
+    "Dữ Liệu & Hồ Sơ": "ទិន្នន័យ និងប្រវត្តិរូប",
+    "Đang hiển thị mục:": "កំពុងបង្ហាញផ្នែក៖",
+    "Thơ quê hương & Cảm hứng văn hóa": "កំណាព្យស្រុកកំណើត និងការបំផុសគំនិតវប្បធម៌",
+    "Lưu Trữ Đồng Bộ LocalStorage & IndexedDB": "ការរក្សាទុកទិន្នន័យ LocalStorage & IndexedDB",
+    "Lưu Trữ Thông Tin Người Dùng & Dữ Liệu Website": "មជ្ឈមណ្ឌលរក្សាទុកព័ត៌មានអ្នកប្រើប្រាស់ និងទិន្នន័យគេហទំព័រ",
+    "Hồ Sơ Thông Tin Người Dùng": "ប្រវត្តិរូបព័ត៌មានអ្នកប្រើប្រាស់",
+    "Đã tự động lưu": "បានរក្សាទុកស្វ័យប្រវត្តិ",
+    "Họ và tên người dùng": "គោត្តនាម និងនាមអ្នកប្រើប្រាស់",
+    "Nhập họ tên của bạn...": "បញ្ចូលឈ្មោះរបស់អ្នក...",
+    "Vai trò": "តួនាទី",
+    "Học sinh / Sinh viên": "សិស្ស / និស្សិត",
+    "Giáo viên / Giảng viên": "គ្រូបង្រៀន / សាស្ត្រាចារ្យ",
+    "Du khách / Thực khách": "ភ្ញៀវទេសចរ / អ្នកذوقម្ហូប",
+    "Nghệ nhân làm bánh": "សិប្បករធ្វើនំ",
+    "Nhà nghiên cứu văn hóa": "អ្នកស្រាវជ្រាវវប្បធម៌",
+    "Khu vực yêu thích": "តំបន់ដែលចូលចិត្ត",
+    "Trường / Đơn vị / Địa phương": "សាលា / អង្គភាព / មូលដ្ឋាន",
+    "VD: Vĩnh Long / Trà Vinh / Bến Tre...": "ឧ. វិញឡុង / ត្រាវិញ / បេនត្រេ...",
+    "Ghi chú ẩm thực & Món bánh yêu thích": "កំណត់ចំណាំម្ហូបអាហារ និងនំដែលចូលចិត្ត",
+    "Ghi chú cá nhân hoặc khẩu vị yêu thích...": "កំណត់ចំណាំផ្ទាល់ខ្លួន ឬរសជាតិដែលចូលចិត្ត...",
+    "Lưu Thông Tin Người Dùng": "រក្សាទុកព័ត៌មានអ្នកប្រើប្រាស់",
+    "Trạng Thái Dữ Liệu Website Đang Lưu": "ស្ថានភាពទិន្នន័យគេហទំព័រដែលកំពុងរក្សាទុក",
+    "Lượt xem trang web": "ចំនួនមើលគេហទំព័រ",
+    "Lượt xem 12 món bánh": "ចំនួនមើលនំទាំង ១២ មុខ",
+    "Món yêu thích & Đã thử": "នំដែលចូលចិត្ត និងបានភ្លក់",
+    "Đánh giá & Ghi chú bếp": "ការវាយតម្លៃ និងកំណត់ចំណាំចង្ក្រាន",
+    "Toàn bộ thông tin người dùng, lịch sử xem món, đánh giá sao, hộ chiếu ẩm thực và ghi chú công thức được lưu bền vững ngay trên trình duyệt của bạn.": "ព័ត៌មានអ្នកប្រើប្រាស់ ប្រវត្តិមើលនំ ការវាយតម្លៃផ្កាយ លិខិតឆ្លងដែនម្ហូបអាហារ និងកំណត់ចំណាំរូបមន្តទាំងអស់ ត្រូវបានរក្សាទុកយ៉ាងមានសុវត្ថិភាពនៅលើកម្មវិធីរុករករបស់អ្នក។",
+    "Tải Bản Sao Lưu (.JSON)": "ទាញយកឯកសារបម្រុងទុក (.JSON)",
+    "Khôi Phục Dữ Liệu": "ស្តារទិន្នន័យឡើងវិញ"
+  });
+
+  Object.assign(VI_TO_EN_UI_PHRASES, {
+    "Lưu Trữ": "Storage",
+    "Tùy chỉnh": "Settings",
+    "Dữ Liệu & Hồ Sơ": "Data & Profile",
+    "Đang hiển thị mục:": "Viewing section:",
+    "Thơ quê hương & Cảm hứng văn hóa": "Homeland Poetry & Cultural Inspiration",
+    "Lưu Trữ Đồng Bộ LocalStorage & IndexedDB": "Synchronized LocalStorage & IndexedDB Storage",
+    "Lưu Trữ Thông Tin Người Dùng & Dữ Liệu Website": "User Information & Website Data Storage Center",
+    "Hồ Sơ Thông Tin Người Dùng": "User Profile Information",
+    "Đã tự động lưu": "Auto-saved",
+    "Họ và tên người dùng": "Full Name",
+    "Nhập họ tên của bạn...": "Enter your full name...",
+    "Vai trò": "Role",
+    "Học sinh / Sinh viên": "Student",
+    "Giáo viên / Giảng viên": "Teacher / Lecturer",
+    "Du khách / Thực khách": "Tourist / Food Lover",
+    "Nghệ nhân làm bánh": "Folk Cake Artisan",
+    "Nhà nghiên cứu văn hóa": "Cultural Researcher",
+    "Khu vực yêu thích": "Favorite Region",
+    "Trường / Đơn vị / Địa phương": "School / Organization / Locality",
+    "VD: Vĩnh Long / Trà Vinh / Bến Tre...": "E.g., Vinh Long / Tra Vinh / Ben Tre...",
+    "Ghi chú ẩm thực & Món bánh yêu thích": "Culinary Notes & Favorite Cakes",
+    "Ghi chú cá nhân hoặc khẩu vị yêu thích...": "Personal notes or favorite taste preferences...",
+    "Lưu Thông Tin Người Dùng": "Save User Information",
+    "Trạng Thái Dữ Liệu Website Đang Lưu": "Stored Website Data Status",
+    "Lượt xem trang web": "Website Views",
+    "Lượt xem 12 món bánh": "12 Cakes Total Views",
+    "Món yêu thích & Đã thử": "Favorites & Tasted",
+    "Đánh giá & Ghi chú bếp": "Reviews & Kitchen Notes",
+    "Toàn bộ thông tin người dùng, lịch sử xem món, đánh giá sao, hộ chiếu ẩm thực và ghi chú công thức được lưu bền vững ngay trên trình duyệt của bạn.": "All user profile details, dish view history, star ratings, tasting passport stamps, and recipe notes are persistently stored right in your browser.",
+    "Tải Bản Sao Lưu (.JSON)": "Export Backup (.JSON)",
+    "Khôi Phục Dữ Liệu": "Restore Data"
+  });
+
+  // ============================================================================
+  // STT 1 & STT 5: SỰ KIỆN ĐÓNG / MỞ KHAY TÙY CHỈNH NHẠC & GIAO DIỆN ĐẦU TRANG
+  // ============================================================================
+  const topSettingsBtn = document.getElementById("toggle-top-settings-popover-btn");
+  const topSettingsPanel = document.getElementById("top-settings-popover-panel");
+  if (topSettingsBtn && topSettingsPanel) {
+    topSettingsBtn.addEventListener("click", () => {
+      const isHidden = topSettingsPanel.classList.toggle("hidden");
+      topSettingsBtn.setAttribute("aria-expanded", String(!isHidden));
+    });
+  }
+
+  // ============================================================================
+  // STT 2: QUẢN LÝ LƯU TRỮ THÔNG TIN NGƯỜI DÙNG & DỮ LIỆU WEBSITE
+  // ============================================================================
+  const USER_PROFILE_STORAGE_KEY = "khmer_vinhlong_user_profile_v1";
+  window.__memUserProfile = window.__memUserProfile || null;
+  const safeGetStorageItem = (k, fallbackStr) => {
+    try {
+      const v = localStorage.getItem(k);
+      if (v !== null) return v;
+    } catch (e) {}
+    return fallbackStr;
+  };
+  const getSavedUserProfile = () => {
+    try {
+      const raw = localStorage.getItem(USER_PROFILE_STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    if (window.__memUserProfile) return window.__memUserProfile;
+    return {
+      fullName: "",
+      role: "Học sinh / Sinh viên",
+      region: "Khu vực Trà Vinh",
+      organization: "",
+      note: "",
+      updatedAt: null
+    };
+  };
+
+  const syncUserProfileToForms = (profile) => {
+    if (!profile || !profile.fullName) return;
+    document.querySelectorAll("input[data-review-author], input[name=\"author\"]").forEach((inp) => {
+      if (!inp.value) inp.value = profile.fullName;
+    });
+  };
+
+  const refreshUserStorageModalStats = () => {
+    const profile = getSavedUserProfile();
+    const fnEl = document.getElementById("up-fullname-input");
+    const roleEl = document.getElementById("up-role-select");
+    const regEl = document.getElementById("up-region-select");
+    const orgEl = document.getElementById("up-school-org-input");
+    const noteEl = document.getElementById("up-fav-note-input");
+    if (fnEl) fnEl.value = profile.fullName || "";
+    if (roleEl && profile.role) roleEl.value = profile.role;
+    if (regEl && profile.region) regEl.value = profile.region;
+    if (orgEl) orgEl.value = profile.organization || "";
+    if (noteEl) noteEl.value = profile.note || "";
+
+    const siteViews = typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getSiteViews() : 0;
+    const dishViews = typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getTotalDishViews() : 0;
+    let favCount = 0;
+    let passportCount = 0;
+    try {
+      const favs = JSON.parse(localStorage.getItem("khmer_cakes_favorites") || "[]");
+      if (Array.isArray(favs)) favCount = favs.length;
+      const pass = JSON.parse(localStorage.getItem("khmer_tasting_passport_v1") || "[]");
+      if (Array.isArray(pass)) passportCount = pass.length;
+    } catch (e) {}
+    const reviewsCount = typeof getCombinedAllReviewsList === "function" ? getCombinedAllReviewsList().length : 0;
+
+    const svEl = document.getElementById("storage-stat-site-views");
+    const dvEl = document.getElementById("storage-stat-dish-views");
+    const fpEl = document.getElementById("storage-stat-fav-passport");
+    const rnEl = document.getElementById("storage-stat-reviews-notes");
+    if (svEl) svEl.textContent = String(siteViews);
+    if (dvEl) dvEl.textContent = String(dishViews);
+    if (fpEl) fpEl.textContent = `${favCount} yêu thích • ${passportCount}/12 đã thử`;
+    if (rnEl) rnEl.textContent = `${reviewsCount} đánh giá`;
+    if (window.currentAppLang === "km" || window.currentAppLang === "en") {
+      translateTextNodeStrings(document.getElementById("user-data-storage-modal"), window.currentAppLang);
+    }
+  };
+
+  const openUserStorageModal = () => {
+    refreshUserStorageModalStats();
+    document.getElementById("user-data-storage-modal")?.classList.remove("hidden");
+  };
+  const closeUserStorageModal = () => {
+    document.getElementById("user-data-storage-modal")?.classList.add("hidden");
+  };
+
+  document.getElementById("open-user-storage-modal-btn")?.addEventListener("click", openUserStorageModal);
+  document.getElementById("nav-open-storage-btn")?.addEventListener("click", openUserStorageModal);
+  document.getElementById("close-user-storage-modal-btn")?.addEventListener("click", closeUserStorageModal);
+  document.getElementById("user-data-storage-modal")?.addEventListener("click", (e) => {
+    if (e.target.id === "user-data-storage-modal") closeUserStorageModal();
+  });
+
+  document.getElementById("save-user-profile-btn")?.addEventListener("click", () => {
+    const newProfile = {
+      fullName: (document.getElementById("up-fullname-input")?.value || "").trim(),
+      role: document.getElementById("up-role-select")?.value || "Học sinh / Sinh viên",
+      region: document.getElementById("up-region-select")?.value || "Khu vực Trà Vinh",
+      organization: (document.getElementById("up-school-org-input")?.value || "").trim(),
+      note: (document.getElementById("up-fav-note-input")?.value || "").trim(),
+      updatedAt: new Date().toISOString()
+    };
+    window.__memUserProfile = newProfile;
+    try {
+      localStorage.setItem(USER_PROFILE_STORAGE_KEY, JSON.stringify(newProfile));
+    } catch (e) {}
+    syncUserProfileToForms(newProfile);
+    const badge = document.getElementById("user-profile-saved-badge");
+    if (badge) {
+      badge.textContent = window.currentAppLang === "km" ? "បានរក្សាទុករួចរាល់!" : (window.currentAppLang === "en" ? "Saved!" : "Đã lưu thành công!");
+    }
+    showAppToast(
+      window.currentAppLang === "km"
+        ? "បានរក្សាទុកព័ត៌មានអ្នកប្រើប្រាស់ និងទិន្នន័យគេហទំព័ររួចរាល់!"
+        : window.currentAppLang === "en"
+        ? "User profile & website data saved successfully!"
+        : "Đã lưu thông tin người dùng & đồng bộ dữ liệu website thành công!"
+    );
+  });
+
+  document.getElementById("export-site-data-json-btn")?.addEventListener("click", () => {
+    const backupPayload = {
+      project: "Lan toả bánh dân gian Khmer Vĩnh Long",
+      exportedAt: new Date().toISOString(),
+      userProfile: getSavedUserProfile(),
+      websiteData: typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getAllSnapshot() : {},
+      favorites: JSON.parse(safeGetStorageItem("khmer_cakes_favorites", "[]")),
+      tastingPassport: JSON.parse(safeGetStorageItem("khmer_tasting_passport_v1", "[]")),
+      customReviews: JSON.parse(safeGetStorageItem("khmer_community_reviews_v1", "[]"))
+    };
+    const blob = new Blob([JSON.stringify(backupPayload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "DuLieu_BanhDanGianKhmerVinhLong_Backup.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    showAppToast("Đã tải file sao lưu dữ liệu người dùng & website (.JSON)!");
+  });
+
+  document.getElementById("import-site-data-file-input")?.addEventListener("change", (ev) => {
+    const file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(String(reader.result || "{}"));
+        if (parsed.userProfile) {
+          localStorage.setItem(USER_PROFILE_STORAGE_KEY, JSON.stringify(parsed.userProfile));
+          syncUserProfileToForms(parsed.userProfile);
+        }
+        if (Array.isArray(parsed.favorites)) {
+          localStorage.setItem("khmer_cakes_favorites", JSON.stringify(parsed.favorites));
+        }
+        if (Array.isArray(parsed.tastingPassport)) {
+          localStorage.setItem("khmer_tasting_passport_v1", JSON.stringify(parsed.tastingPassport));
+        }
+        refreshUserStorageModalStats();
+        updateLiveViewAndRatingBadges();
+        showAppToast("Đã khôi phục thông tin người dùng & dữ liệu website thành công!");
+      } catch (err) {
+        showAppToast("File JSON không hợp lệ, vui lòng kiểm tra lại!");
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  syncUserProfileToForms(getSavedUserProfile());
 
   if (initialId) {
     navigateToSpoke(initialId, true);
