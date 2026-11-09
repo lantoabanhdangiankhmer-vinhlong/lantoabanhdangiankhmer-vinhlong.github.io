@@ -1,0 +1,11 @@
+[
+  {
+    "timestamp": "2026-11-09T23:53:00.000Z",
+    "page": "index.html",
+    "action": "INITIALIZE_STORAGE_DIRECTORY",
+    "detail": {
+      "folder": "DuLieu_LuuTru_Website",
+      "status": "Ready for automatic synchronization"
+    }
+  }
+]

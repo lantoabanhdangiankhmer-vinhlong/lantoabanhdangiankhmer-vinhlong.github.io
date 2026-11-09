@@ -1,0 +1,121 @@
+{
+  "project": "Lan toả bánh dân gian Khmer Vĩnh Long",
+  "folderName": "DuLieu_LuuTru_Website",
+  "version": "2.0",
+  "exportedAt": "2026-11-09T23:53:00.000Z",
+  "userProfile": {
+    "fullName": "",
+    "role": "Học sinh / Sinh viên",
+    "region": "Khu vực Trà Vinh",
+    "organization": "",
+    "note": "",
+    "updatedAt": "2026-11-09T23:53:00.000Z"
+  },
+  "websiteData": {
+    "siteViews": 1,
+    "firstVisitAt": "2026-11-09T23:53:00.000Z",
+    "lastVisitAt": "2026-11-09T23:53:00.000Z",
+    "dishViews": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0
+    },
+    "siteReviews": [],
+    "dishReviews": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": []
+    },
+    "dishReactions": {},
+    "reviewReplies": {},
+    "likedReviewIds": [],
+    "deletedReviewIds": []
+  },
+  "favorites": [],
+  "tastingPassport": [],
+  "customReviews": [],
+  "preferencesAndKitchen": {
+    "theme": "light",
+    "fontScale": "100",
+    "motionFx": "on",
+    "musicVolume": "0.6",
+    "customBaseUrl": "",
+    "favorites": [],
+    "menuTray": [],
+    "tastingPassport": [],
+    "fieldworkRecords": [],
+    "tk123TrainingRules": [],
+    "dishChecklists": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": []
+    },
+    "dishBatches": {
+      "1": "1",
+      "2": "1",
+      "3": "1",
+      "4": "1",
+      "5": "1",
+      "6": "1",
+      "7": "1",
+      "8": "1",
+      "9": "1",
+      "10": "1",
+      "11": "1",
+      "12": "1"
+    },
+    "dishNotes": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": []
+    }
+  },
+  "runtimeLogs": [
+    {
+      "timestamp": "2026-11-09T23:53:00.000Z",
+      "page": "index.html",
+      "action": "INITIALIZE_STORAGE_DIRECTORY",
+      "detail": {
+        "folder": "DuLieu_LuuTru_Website",
+        "status": "Ready for automatic synchronization"
+      }
+    }
+  ],
+  "rawStorageMirror": {}
+}
