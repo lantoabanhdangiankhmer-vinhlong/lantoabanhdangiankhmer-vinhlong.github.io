@@ -1680,6 +1680,7 @@ html[data-theme="terracotta"] .poetic-homeland-banner {
 
   
 /* === TỐI ƯU GIAO DIỆN GỌN GÀNG, PHÂN CHIA RÕ RÀNG TRÊN MỌI THIẾT BỊ (MOBILE, TABLET, DESKTOP) === */
+.hidden { display: none !important; }
 html[lang="km"] body {
   font-family: 'Noto Sans Khmer', 'Be Vietnam Pro', sans-serif !important;
   line-height: 1.65;
@@ -1735,12 +1736,26 @@ html[lang="km"] body {
             </button>
           </div>
 
-          <!-- Cụm phải siêu gọn: Bật nhạc 1 chạm • 3 Ngôn ngữ • Lưu trữ dữ liệu (STT 2) • Tùy chỉnh nhạc/màu • Mục lục -->
+          <!-- Cụm phải siêu gọn: Bật nhạc 1 chạm + Khay mở Nhạc & Nền kế bên • 3 Ngôn ngữ • Lưu trữ dữ liệu (STT 2) • Mục lục -->
           <div class="flex items-center gap-1 shrink-0 ml-auto">
-            <button type="button" id="play-homeland-melody-btn" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 flex items-center gap-1 transition-all shrink-0 shadow-sm" title="Bật / Tạm dừng nhạc nền">
-              <i id="music-play-icon" class="fa-solid fa-play text-amber-300 text-[9px]"></i>
-              <span id="homeland-melody-label">Bật Nhạc</span>
-            </button>
+            <div class="inline-flex items-center gap-0.5 bg-white p-0.5 rounded-full border border-amber-400 shadow-sm shrink-0">
+              <button type="button" id="play-homeland-melody-btn" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 flex items-center gap-1 transition-all shrink-0 shadow-sm" title="Bật / Tạm dừng nhạc nền">
+                <i id="music-play-icon" class="fa-solid fa-play text-amber-300 text-[9px]"></i>
+                <span id="homeland-melody-label">Bật Nhạc</span>
+              </button>
+
+              <button
+                type="button"
+                id="toggle-top-settings-popover-btn"
+                class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100/90 hover:bg-amber-200 text-stone-800 border border-amber-400/80 flex items-center gap-1 transition-all shrink-0"
+                title="Mở khay chỉnh Nhạc nền chi tiết, Giao diện Sáng/Ấm/Tối &amp; Thống kê lượt xem"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-sliders text-rose-700 text-[9px]"></i>
+                <span>Nhạc &amp; Nền</span>
+                <i id="top-settings-chevron-icon" class="fa-solid fa-chevron-down text-stone-600 text-[8px] transition-transform"></i>
+              </button>
+            </div>
 
             <div class="flex items-center gap-0.5 bg-white px-1 py-0.5 rounded-full border border-emerald-600/50 shadow-sm shrink-0" role="group" aria-label="Ngôn ngữ / ភាសា / Language">
               <button type="button" data-set-lang="vi" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] text-amber-200 transition-all" title="Tiếng Việt (Mặc định - VNĐ)">🇻🇳 Tiếng Việt</button>
@@ -1760,17 +1775,6 @@ html[lang="km"] body {
 
             <button
               type="button"
-              id="toggle-top-settings-popover-btn"
-              class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-white hover:bg-amber-100 text-stone-800 border border-amber-400 shadow-sm flex items-center gap-1 transition-all shrink-0"
-              title="Mở khay chỉnh Nhạc nền chi tiết, Giao diện Sáng/Ấm/Tối &amp; Thống kê lượt xem"
-              aria-expanded="false"
-            >
-              <i class="fa-solid fa-sliders text-rose-700 text-[9px]"></i>
-              <span class="hidden sm:inline">Tùy chỉnh</span>
-            </button>
-
-            <button
-              type="button"
               id="top-right-toc-btn"
               class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 border border-amber-400 shadow-sm flex items-center gap-1 transition-all shrink-0"
               title="Mở Mục Lục 3 gạch bên phải"
@@ -1785,6 +1789,48 @@ html[lang="km"] body {
         <!-- Khay thu gọn thông minh chứa: Bộ chỉnh nhạc chi tiết, Chế độ Màu Sáng/Ấm/Tối và Lượt xem -->
         <div id="top-settings-popover-panel" class="hidden mt-1.5 pt-2 border-t border-amber-300/70 flex flex-wrap items-center justify-between gap-2 text-[11px]">
           <div class="flex items-center gap-1.5 flex-wrap">
+            <div id="compact-audio-player-bar" class="inline-flex items-center gap-1.5 bg-white/95 rounded-full px-2.5 py-0.5 border border-amber-400 shadow-sm flex-wrap">
+              <button type="button" id="music-seek-back-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-stone-800 border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tua lùi 5 giây (-5s)" aria-label="Tua lùi 5 giây">
+                <i class="fa-solid fa-backward-step"></i>
+              </button>
+
+              <div class="flex items-center gap-1.5 px-1 bg-[#FAF6EE] rounded-full py-0.5 border border-amber-300/80" title="Kéo thanh trượt để tua đến bất kỳ đoạn nhạc nào">
+                <input id="music-seek-slider" type="range" min="0" max="1000" value="0" class="w-16 sm:w-24 h-1.5 accent-rose-700 cursor-pointer" aria-label="Thanh tua thời gian nhạc" />
+                <span id="music-time-display" class="text-[9px] font-extrabold text-stone-800 tabular-nums whitespace-nowrap">0:00 / 0:00</span>
+              </div>
+
+              <button type="button" id="music-seek-fwd-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-stone-800 border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tua tới 5 giây (+5s)" aria-label="Tua tới 5 giây">
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+
+              <button type="button" id="music-mute-toggle-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-[#0F4C3A] border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tắt / Bật tiếng (Mute/Unmute)" aria-label="Tắt hoặc bật tiếng">
+                <i id="music-volume-icon" class="fa-solid fa-volume-low"></i>
+              </button>
+
+              <div class="flex items-center gap-1 pr-0.5" title="Chỉnh âm lượng nhạc nền (0% - 100%)">
+                <input id="music-volume-slider" type="range" min="0" max="100" value="35" class="w-12 sm:w-14 h-1.5 accent-[#0F4C3A] cursor-pointer" aria-label="Âm lượng nhạc nền" />
+                <span id="music-volume-pct" class="text-[9px] font-extrabold text-[#0F4C3A] min-w-[24px] text-right tabular-nums">35%</span>
+              </div>
+
+              <button type="button" id="music-loop-badge" class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-emerald-100 text-[#0F4C3A] border border-emerald-500/60 text-[9px] font-extrabold transition-all shrink-0" title="Bật / Tắt chế độ tự động lặp lại bài nhạc">
+                <i class="fa-solid fa-repeat text-[8px]"></i>
+                <span id="music-loop-text">Tự lặp</span>
+              </button>
+
+              <label for="custom-music-file-input" id="pick-custom-music-btn" class="cursor-pointer px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-amber-100 hover:bg-amber-200 text-[#0F4C3A] border border-amber-400 flex items-center gap-1 transition-all shrink-0" title="Chọn file nhạc (.mp3, .wav, .ogg) từ máy của bạn">
+                <i class="fa-solid fa-folder-open text-amber-700"></i>
+                <span>Chọn nhạc</span>
+              </label>
+            </div>
+
+            <div class="flex items-center gap-1 bg-white px-1.5 py-0.5 rounded-full border border-amber-400/60 shadow-sm" role="group" aria-label="Giao diện">
+              <button type="button" data-set-theme="indochine" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] text-amber-200">Màu Sáng</button>
+              <button type="button" data-set-theme="terracotta" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700">Màu Ấm</button>
+              <button type="button" data-set-theme="night" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700">Màu Tối</button>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 flex-wrap ml-auto">
             <span id="top-site-views-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-emerald-600/50 text-[#0F4C3A] text-[10px] font-extrabold shadow-sm" title="Lượt xem trang web">
               <i class="fa-regular fa-eye text-emerald-700"></i>
               <span id="top-site-views-text">Lượt xem web: 0</span>
@@ -1793,46 +1839,6 @@ html[lang="km"] body {
               <i class="fa-solid fa-utensils text-rose-700"></i>
               <span id="top-dish-views-text">Lượt xem món: 0</span>
             </span>
-          </div>
-
-          <div id="compact-audio-player-bar" class="inline-flex items-center gap-1.5 bg-white/95 rounded-full px-2.5 py-0.5 border border-amber-400 shadow-sm flex-wrap">
-            <button type="button" id="music-seek-back-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-stone-800 border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tua lùi 5 giây (-5s)" aria-label="Tua lùi 5 giây">
-              <i class="fa-solid fa-backward-step"></i>
-            </button>
-
-            <div class="flex items-center gap-1.5 px-1 bg-[#FAF6EE] rounded-full py-0.5 border border-amber-300/80" title="Kéo thanh trượt để tua đến bất kỳ đoạn nhạc nào">
-              <input id="music-seek-slider" type="range" min="0" max="1000" value="0" class="w-16 sm:w-24 h-1.5 accent-rose-700 cursor-pointer" aria-label="Thanh tua thời gian nhạc" />
-              <span id="music-time-display" class="text-[9px] font-extrabold text-stone-800 tabular-nums whitespace-nowrap">0:00 / 0:00</span>
-            </div>
-
-            <button type="button" id="music-seek-fwd-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-stone-800 border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tua tới 5 giây (+5s)" aria-label="Tua tới 5 giây">
-              <i class="fa-solid fa-forward-step"></i>
-            </button>
-
-            <button type="button" id="music-mute-toggle-btn" class="w-5 h-5 rounded-full bg-amber-50 hover:bg-amber-200 text-[#0F4C3A] border border-amber-300 flex items-center justify-center text-[9px] transition-all shrink-0" title="Tắt / Bật tiếng (Mute/Unmute)" aria-label="Tắt hoặc bật tiếng">
-              <i id="music-volume-icon" class="fa-solid fa-volume-low"></i>
-            </button>
-
-            <div class="flex items-center gap-1 pr-0.5" title="Chỉnh âm lượng nhạc nền (0% - 100%)">
-              <input id="music-volume-slider" type="range" min="0" max="100" value="35" class="w-12 sm:w-14 h-1.5 accent-[#0F4C3A] cursor-pointer" aria-label="Âm lượng nhạc nền" />
-              <span id="music-volume-pct" class="text-[9px] font-extrabold text-[#0F4C3A] min-w-[24px] text-right tabular-nums">35%</span>
-            </div>
-
-            <button type="button" id="music-loop-badge" class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-emerald-100 text-[#0F4C3A] border border-emerald-500/60 text-[9px] font-extrabold transition-all shrink-0" title="Bật / Tắt chế độ tự động lặp lại bài nhạc">
-              <i class="fa-solid fa-repeat text-[8px]"></i>
-              <span id="music-loop-text">Tự lặp</span>
-            </button>
-
-            <label for="custom-music-file-input" id="pick-custom-music-btn" class="cursor-pointer px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-amber-100 hover:bg-amber-200 text-[#0F4C3A] border border-amber-400 flex items-center gap-1 transition-all shrink-0" title="Chọn file nhạc (.mp3, .wav, .ogg) từ máy của bạn">
-              <i class="fa-solid fa-folder-open text-amber-700"></i>
-              <span>Chọn nhạc</span>
-            </label>
-          </div>
-
-          <div class="flex items-center gap-1 bg-white px-1.5 py-0.5 rounded-full border border-amber-400/60" role="group" aria-label="Giao diện">
-            <button type="button" data-set-theme="indochine" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] text-amber-200">Màu Sáng</button>
-            <button type="button" data-set-theme="terracotta" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700">Màu Ấm</button>
-            <button type="button" data-set-theme="night" class="theme-switch-btn px-2 py-0.5 rounded-full text-[10px] font-semibold text-stone-700">Màu Tối</button>
           </div>
         </div>
       </div>
@@ -2620,6 +2626,34 @@ html[lang="km"] body {
                 <span>Khôi Phục Dữ Liệu</span>
               </label>
               <input id="import-site-data-file-input" type="file" accept=".json,application/json" class="hidden" />
+            </div>
+
+            <!-- Khung Kết Nối & Đồng Bộ Thư Mục Lưu Trữ Trên Máy Tính (DuLieu_LuuTru_Website) -->
+            <div class="p-3 rounded-2xl bg-emerald-950/5 border-2 border-dashed border-[#0F4C3A]/40 space-y-2 mt-2">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <div class="flex items-center gap-1.5 text-xs font-extrabold text-[#0F4C3A]">
+                  <i class="fa-solid fa-folder-open text-amber-600"></i>
+                  <span>Thư Mục Lưu Trữ Máy Tính (DuLieu_LuuTru_Website)</span>
+                </div>
+                <span id="folder-sync-status-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                  Đang lưu bộ nhớ trình duyệt
+                </span>
+              </div>
+
+              <p class="text-[11px] text-stone-600 leading-relaxed">
+                Chọn thư mục <strong>DuLieu_LuuTru_Website</strong> trong gói giải nén để website tự động xuất và lưu đè 5 tệp dữ liệu (.JSON) ngay khi bạn thao tác trên web.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <button type="button" id="connect-local-storage-folder-btn" class="py-2 px-3 rounded-xl bg-[#0F4C3A] hover:bg-[#093528] text-amber-200 font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
+                  <i class="fa-solid fa-folder-plus text-amber-300"></i>
+                  <span>Chọn Thư Mục Tự Động Lưu</span>
+                </button>
+                <button type="button" id="sync-now-to-folder-btn" class="py-2 px-3 rounded-xl bg-white hover:bg-emerald-50 text-[#0F4C3A] border border-[#0F4C3A] font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
+                  <i class="fa-solid fa-rotate text-emerald-700"></i>
+                  <span>Lưu Tất Cả Vào Thư Mục Ngay</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -6038,7 +6072,8 @@ Mình được huấn luyện để giải đáp đầy đủ mọi câu hỏi v
     q.includes("គេហទំព័រ") ||
     q.includes("មុខងារ");
 
-  if (isAskingAboutWebsite && matchedDishesByName.length === 0) {
+  const prelimMatched = findMatchingDishesFuzzy(q, dishesData || []);
+  if (isAskingAboutWebsite && prelimMatched.length === 0) {
     const siteViewsNow = typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getSiteViews() : 0;
     const dishViewsNow = typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getTotalDishViews() : 0;
     return {
@@ -27514,6 +27549,45 @@ listContainer.querySelectorAll(".open-detail-btn").forEach((btn) => {
     return leadWs + out + trailWs;
   }
 
+  const EXTRA_KM_NEW_UI = {
+    "Lưu Trữ": "រក្សាទុកទិន្នន័យ",
+    "Tùy chỉnh": "កំណត់",
+    "Dữ Liệu & Hồ Sơ": "ទិន្នន័យ និងប្រវត្តិរូប",
+    "Đang hiển thị mục:": "កំពុងបង្ហាញផ្នែក៖",
+    "Thơ quê hương & Cảm hứng văn hóa": "កំណាព្យស្រុកកំណើត និងការបំផុសគំនិតវប្បធម៌",
+    "Lưu Trữ Đồng Bộ LocalStorage & IndexedDB": "ការរក្សាទុកទិន្នន័យ LocalStorage & IndexedDB",
+    "Lưu Trữ Thông Tin Người Dùng & Dữ Liệu Website": "មជ្ឈមណ្ឌលរក្សាទុកព័ត៌មានអ្នកប្រើប្រាស់ និងទិន្នន័យគេហទំព័រ",
+    "Hồ Sơ Thông Tin Người Dùng": "ប្រវត្តិរូបព័ត៌មានអ្នកប្រើប្រាស់",
+    "Đã tự động lưu": "បានរក្សាទុកស្វ័យប្រវត្តិ",
+    "Đã lưu thành công!": "បានរក្សាទុករួចរាល់!",
+    "Họ và tên người dùng": "គោត្តនាម និងនាមអ្នកប្រើប្រាស់",
+    "Nhập họ tên của bạn...": "បញ្ចូលឈ្មោះរបស់អ្នក...",
+    "Vai trò": "តួនាទី",
+    "Học sinh / Sinh viên": "សិស្ស / និស្សិត",
+    "Giáo viên / Giảng viên": "គ្រូបង្រៀន / សាស្ត្រាចារ្យ",
+    "Du khách / Thực khách": "ភ្ញៀវទេសចរ / អ្នកភ្លក់ម្ហូប",
+    "Nghệ nhân làm bánh": "សិប្បករធ្វើនំ",
+    "Nhà nghiên cứu văn hóa": "អ្នកស្រាវជ្រាវវប្បធម៌",
+    "Khu vực yêu thích": "តំបន់ដែលចូលចិត្ត",
+    "Trường / Đơn vị / Địa phương": "សាលា / អង្គភាព / មូលដ្ឋាន",
+    "VD: Vĩnh Long / Trà Vinh / Bến Tre...": "ឧ. វិញឡុង / ត្រាវិញ / បេនត្រេ...",
+    "Ghi chú ẩm thực & Món bánh yêu thích": "កំណត់ចំណាំម្ហូបអាហារ និងនំដែលចូលចិត្ត",
+    "Ghi chú cá nhân hoặc khẩu vị yêu thích...": "កំណត់ចំណាំផ្ទាល់ខ្លួន ឬរសជាតិដែលចូលចិត្ត...",
+    "Lưu Thông Tin Người Dùng": "រក្សាទុកព័ត៌មានអ្នកប្រើប្រាស់",
+    "Trạng Thái Dữ Liệu Website Đang Lưu": "ស្ថានភាពទិន្នន័យគេហទំព័រដែលកំពុងរក្សាទុក",
+    "Lượt xem trang web": "ចំនួនមើលគេហទំព័រ",
+    "Lượt xem 12 món bánh": "ចំនួនមើលនំទាំង ១២ មុខ",
+    "Món yêu thích & Đã thử": "នំដែលចូលចិត្ត និងបានភ្លក់",
+    "Đánh giá & Ghi chú bếp": "ការវាយតម្លៃ និងកំណត់ចំណាំចង្ក្រាន",
+    "Toàn bộ thông tin người dùng, lịch sử xem món, đánh giá sao, hộ chiếu ẩm thực và ghi chú công thức được lưu bền vững ngay trên trình duyệt của bạn.": "ព័ត៌មានអ្នកប្រើប្រាស់ ប្រវត្តិមើលនំ ការវាយតម្លៃផ្កាយ លិខិតឆ្លងដែនម្ហូបអាហារ និងកំណត់ចំណាំរូបមន្តទាំងអស់ ត្រូវបានរក្សាទុកយ៉ាងមានសុវត្ថិភាពនៅលើកម្មវិធីរុករករបស់អ្នក។",
+    "Tải Bản Sao Lưu (.JSON)": "ទាញយកឯកសារបម្រុងទុក (.JSON)",
+    "Khôi Phục Dữ Liệu": "ស្តារទិន្នន័យឡើងវិញ"
+  };
+  Object.entries(EXTRA_KM_NEW_UI).forEach(([k, v]) => {
+    VI_TO_KM_EXACT_LOOKUP.set(k.replace(/\s+/g, " ").trim(), v);
+    VI_TO_KM_SUBSTRING_PAIRS.unshift([k, v]);
+  });
+
   function translateSingleStringToKm(rawStr) {
     if (!rawStr || !rawStr.trim()) return rawStr;
     const leadMatch = rawStr.match(/^\s*/);
@@ -28149,6 +28223,11 @@ listContainer.querySelectorAll(".open-detail-btn").forEach((btn) => {
   Object.assign(VI_TO_KM_UI_PHRASES, {
     "Lưu Trữ": "រក្សាទុកទិន្នន័យ",
     "Tùy chỉnh": "កំណត់",
+    "Nhạc & Nền": "ភ្លេង និងផ្ទៃ",
+    "Mở khay chỉnh Nhạc nền chi tiết, Giao diện Sáng/Ấm/Tối & Thống kê lượt xem": "បើកថាសកំណត់ភ្លេងលម្អិត ផ្ទៃភ្លឺ/កក់ក្តៅ/ងងឹត និងស្ថិតិចំនួនមើល",
+    "Trung tâm Lưu trữ Thông tin Người dùng & Dữ liệu Website": "មជ្ឈមណ្ឌលរក្សាទុកព័ត៌មានអ្នកប្រើប្រាស់ និងទិន្នន័យគេហទំព័រ",
+    "Mở Mục Lục 3 gạch bên phải": "បើកមាតិកាខាងស្តាំ",
+    "Mở Mục Lục": "បើកមាតិកា",
     "Dữ Liệu & Hồ Sơ": "ទិន្នន័យ និងប្រវត្តិរូប",
     "Đang hiển thị mục:": "កំពុងបង្ហាញផ្នែក៖",
     "Thơ quê hương & Cảm hứng văn hóa": "កំណាព្យស្រុកកំណើត និងការបំផុសគំនិតវប្បធម៌",
@@ -28183,6 +28262,11 @@ listContainer.querySelectorAll(".open-detail-btn").forEach((btn) => {
   Object.assign(VI_TO_EN_UI_PHRASES, {
     "Lưu Trữ": "Storage",
     "Tùy chỉnh": "Settings",
+    "Nhạc & Nền": "Music & Theme",
+    "Mở khay chỉnh Nhạc nền chi tiết, Giao diện Sáng/Ấm/Tối & Thống kê lượt xem": "Open detailed background music player, Light/Warm/Dark theme & view stats tray",
+    "Trung tâm Lưu trữ Thông tin Người dùng & Dữ liệu Website": "User Information & Website Data Storage Center",
+    "Mở Mục Lục 3 gạch bên phải": "Open Right Table of Contents",
+    "Mở Mục Lục": "Open Table of Contents",
     "Dữ Liệu & Hồ Sơ": "Data & Profile",
     "Đang hiển thị mục:": "Viewing section:",
     "Thơ quê hương & Cảm hứng văn hóa": "Homeland Poetry & Cultural Inspiration",
@@ -28219,10 +28303,14 @@ listContainer.querySelectorAll(".open-detail-btn").forEach((btn) => {
   // ============================================================================
   const topSettingsBtn = document.getElementById("toggle-top-settings-popover-btn");
   const topSettingsPanel = document.getElementById("top-settings-popover-panel");
+  const topSettingsChevron = document.getElementById("top-settings-chevron-icon");
   if (topSettingsBtn && topSettingsPanel) {
     topSettingsBtn.addEventListener("click", () => {
       const isHidden = topSettingsPanel.classList.toggle("hidden");
       topSettingsBtn.setAttribute("aria-expanded", String(!isHidden));
+      if (topSettingsChevron) {
+        topSettingsChevron.classList.toggle("rotate-180", !isHidden);
+      }
     });
   }
 
@@ -28341,26 +28429,230 @@ listContainer.querySelectorAll(".open-detail-btn").forEach((btn) => {
     );
   });
 
-  document.getElementById("export-site-data-json-btn")?.addEventListener("click", () => {
-    const backupPayload = {
+  // Bổ sung từ điển dịch Khmer & Anh cho Thư Mục Lưu Trữ Máy Tính
+  Object.assign(VI_TO_KM_UI_PHRASES, {
+    "Thư Mục Lưu Trữ Máy Tính (DuLieu_LuuTru_Website)": "ថតឯកសាររក្សាទុកក្នុងកុំព្យូទ័រ (DuLieu_LuuTru_Website)",
+    "Đang lưu bộ nhớ trình duyệt": "កំពុងរក្សាទុកក្នុងកម្មវិធីរុករក",
+    "Chọn Thư Mục Tự Động Lưu": "ជ្រើសរើសថតឯកសាររក្សាទុកស្វ័យប្រវត្តិ",
+    "Lưu Tất Cả Vào Thư Mục Ngay": "រក្សាទុកទាំងអស់ទៅក្នុងថតឯកសារភ្លាមៗ"
+  });
+  Object.assign(VI_TO_EN_UI_PHRASES, {
+    "Thư Mục Lưu Trữ Máy Tính (DuLieu_LuuTru_Website)": "Local Computer Storage Folder (DuLieu_LuuTru_Website)",
+    "Đang lưu bộ nhớ trình duyệt": "Saving in browser storage",
+    "Chọn Thư Mục Tự Động Lưu": "Select Auto-Save Folder",
+    "Lưu Tất Cả Vào Thư Mục Ngay": "Save All to Folder Now"
+  });
+
+  // ============================================================================
+  // HỆ THỐNG ĐỒNG BỘ TOÀN BỘ DỮ LIỆU CHẠY WEBSITE VÀO THƯ MỤC (DuLieu_LuuTru_Website)
+  // ============================================================================
+  let connectedDirectoryHandle = null;
+  const RUNTIME_LOGS_KEY = "khmer_cakes_runtime_activity_logs_v1";
+
+  if (typeof window.KhmerHeritageDB !== "undefined") {
+    if (typeof window.KhmerHeritageDB.getAllSnapshot !== "function") {
+      window.KhmerHeritageDB.getAllSnapshot = function () {
+        try {
+          const raw = localStorage.getItem("khmer_heritage_persistent_db_v2_12dishes");
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        const dishViews = {};
+        const dishReviews = {};
+        const dishReactions = {};
+        for (let i = 1; i <= 12; i++) {
+          dishViews[i] = this.getDishViews ? this.getDishViews(i) : 0;
+          dishReviews[i] = this.getDishReviews ? this.getDishReviews(i) : [];
+          dishReactions[i] = this.getDishReactions ? this.getDishReactions(i) : {};
+        }
+        return {
+          siteViews: this.getSiteViews ? this.getSiteViews() : 0,
+          totalDishViews: this.getTotalDishViews ? this.getTotalDishViews() : 0,
+          dishViews,
+          siteReviews: this.getSiteReviews ? this.getSiteReviews() : [],
+          dishReviews,
+          dishReactions
+        };
+      };
+    }
+
+    if (typeof window.KhmerHeritageDB.restoreSnapshot !== "function") {
+      window.KhmerHeritageDB.restoreSnapshot = function (snapshotObj) {
+        if (!snapshotObj || typeof snapshotObj !== "object") return;
+        try {
+          localStorage.setItem("khmer_heritage_persistent_db_v2_12dishes", JSON.stringify(snapshotObj));
+          if (snapshotObj.siteReviews || snapshotObj.dishReviews) {
+            localStorage.setItem(
+              "khmer_heritage_user_reviews_backup_v3_12dishes",
+              JSON.stringify({
+                siteReviews: snapshotObj.siteReviews || [],
+                dishReviews: snapshotObj.dishReviews || {},
+                deletedReviewIds: snapshotObj.deletedReviewIds || [],
+                likedReviewIds: snapshotObj.likedReviewIds || []
+              })
+            );
+          }
+        } catch (e) {}
+      };
+    }
+  }
+
+  const appendRuntimeLog = (actionName, detail = {}) => {
+    try {
+      const logs = JSON.parse(localStorage.getItem(RUNTIME_LOGS_KEY) || "[]");
+      logs.unshift({
+        timestamp: new Date().toISOString(),
+        page: window.location.pathname.split("/").pop() || "index.html",
+        action: actionName,
+        detail: detail
+      });
+      if (logs.length > 250) logs.length = 250;
+      localStorage.setItem(RUNTIME_LOGS_KEY, JSON.stringify(logs));
+    } catch (e) {}
+  };
+
+  const collectAllWebsiteData = () => {
+    const safeParse = (key, fallback) => {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw !== null ? JSON.parse(raw) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    };
+
+    const dishChecklists = {};
+    const dishBatches = {};
+    const dishNotes = {};
+    for (let id = 1; id <= 12; id++) {
+      dishChecklists[id] = safeParse("khmer_cakes_checked_" + id, []);
+      dishBatches[id] = localStorage.getItem("khmer_cakes_batch_" + id) || "1";
+      dishNotes[id] = safeParse("khmer_cakes_note_" + id, []);
+    }
+
+    const allLocalStorageRaw = {};
+    try {
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k) allLocalStorageRaw[k] = localStorage.getItem(k);
+      }
+    } catch (e) {}
+
+    return {
       project: "Lan toả bánh dân gian Khmer Vĩnh Long",
+      folderName: "DuLieu_LuuTru_Website",
+      version: "2.0",
       exportedAt: new Date().toISOString(),
       userProfile: getSavedUserProfile(),
-      websiteData: typeof KhmerHeritageDB !== "undefined" ? KhmerHeritageDB.getAllSnapshot() : {},
-      favorites: JSON.parse(safeGetStorageItem("khmer_cakes_favorites", "[]")),
-      tastingPassport: JSON.parse(safeGetStorageItem("khmer_tasting_passport_v1", "[]")),
-      customReviews: JSON.parse(safeGetStorageItem("khmer_community_reviews_v1", "[]"))
+      websiteData: typeof window.KhmerHeritageDB !== "undefined" ? window.KhmerHeritageDB.getAllSnapshot() : {},
+      favorites: safeParse("khmer_cakes_favorites", []),
+      tastingPassport: safeParse("khmer_cakes_tasted_passport", safeParse("khmer_tasting_passport_v1", [])),
+      customReviews: safeParse("khmer_community_reviews_v1", []),
+      preferencesAndKitchen: {
+        theme: localStorage.getItem("khmer_cakes_heritage_theme") || "light",
+        fontScale: localStorage.getItem("khmer_cakes_font_scale") || "100",
+        motionFx: localStorage.getItem("khmer_cakes_motion_fx") || "on",
+        musicVolume: localStorage.getItem("khmer_heritage_music_volume_v2") || "0.6",
+        customBaseUrl: localStorage.getItem("khmer_cakes_custom_base_url") || "",
+        favorites: safeParse("khmer_cakes_favorites", []),
+        menuTray: safeParse("khmer_cakes_menu_tray", []),
+        tastingPassport: safeParse("khmer_cakes_tasted_passport", safeParse("khmer_tasting_passport_v1", [])),
+        fieldworkRecords: safeParse("khmer_cakes_fieldwork_records", []),
+        tk123TrainingRules: safeParse("khmer_cakes_tk123_custom_training", []),
+        dishChecklists,
+        dishBatches,
+        dishNotes
+      },
+      runtimeLogs: safeParse(RUNTIME_LOGS_KEY, []),
+      rawStorageMirror: allLocalStorageRaw
     };
+  };
+
+  const writeJsonFileToDir = async (dirHandle, fileName, dataObj) => {
+    const fileHandle = await dirHandle.getFileHandle(fileName, { create: true });
+    const writable = await fileHandle.createWritable();
+    await writable.write(JSON.stringify(dataObj, null, 2));
+    await writable.close();
+  };
+
+  const syncAllFilesToConnectedFolder = async (showNotification = false) => {
+    const fullData = collectAllWebsiteData();
+
+    if (connectedDirectoryHandle) {
+      try {
+        await writeJsonFileToDir(connectedDirectoryHandle, "01_TongHop_ToanBo_DuLieu_Web.json", fullData);
+        await writeJsonFileToDir(connectedDirectoryHandle, "02_HoSo_NguoiDung.json", fullData.userProfile);
+        await writeJsonFileToDir(connectedDirectoryHandle, "03_ThongKe_LuotXem_Va_DanhGia.json", fullData.websiteData);
+        await writeJsonFileToDir(connectedDirectoryHandle, "04_SoTay_Bep_Va_MonYeuThich.json", fullData.preferencesAndKitchen);
+        await writeJsonFileToDir(connectedDirectoryHandle, "05_NhatKy_ChayWeb_Log.json", fullData.runtimeLogs);
+
+        const badge = document.getElementById("folder-sync-status-badge");
+        if (badge) {
+          badge.textContent = "Đã lưu vào thư mục: " + new Date().toLocaleTimeString("vi-VN");
+          badge.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-400";
+        }
+        if (showNotification && typeof showAppToast === "function") {
+          showAppToast("Đã ghi toàn bộ 5 tệp dữ liệu (.JSON) vào thư mục DuLieu_LuuTru_Website!");
+        }
+        return true;
+      } catch (err) {
+        console.warn("Không thể ghi trực tiếp vào thư mục:", err);
+      }
+    }
+
+    if (showNotification) {
+      const blob = new Blob([JSON.stringify(fullData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "01_TongHop_ToanBo_DuLieu_Web.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      if (typeof showAppToast === "function") {
+        showAppToast("Đã xuất tệp 01_TongHop_ToanBo_DuLieu_Web.json chứa toàn bộ dữ liệu web!");
+      }
+    }
+    return false;
+  };
+
+  document.getElementById("connect-local-storage-folder-btn")?.addEventListener("click", async () => {
+    if (typeof window.showDirectoryPicker === "function") {
+      try {
+        connectedDirectoryHandle = await window.showDirectoryPicker({
+          id: "khmer_vinhlong_data_folder",
+          mode: "readwrite"
+        });
+        appendRuntimeLog("CONNECT_STORAGE_FOLDER", { folderName: connectedDirectoryHandle.name });
+        await syncAllFilesToConnectedFolder(true);
+      } catch (err) {
+        if (err && err.name !== "AbortError") {
+          await syncAllFilesToConnectedFolder(true);
+        }
+      }
+    } else {
+      await syncAllFilesToConnectedFolder(true);
+    }
+  });
+
+  document.getElementById("sync-now-to-folder-btn")?.addEventListener("click", async () => {
+    appendRuntimeLog("MANUAL_SYNC_ALL_DATA");
+    await syncAllFilesToConnectedFolder(true);
+  });
+
+  document.getElementById("export-site-data-json-btn")?.addEventListener("click", () => {
+    appendRuntimeLog("EXPORT_JSON_BACKUP");
+    const backupPayload = collectAllWebsiteData();
     const blob = new Blob([JSON.stringify(backupPayload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "DuLieu_BanhDanGianKhmerVinhLong_Backup.json";
+    a.download = "01_TongHop_ToanBo_DuLieu_Web.json";
     document.body.appendChild(a);
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    showAppToast("Đã tải file sao lưu dữ liệu người dùng & website (.JSON)!");
+    showAppToast("Đã tải file sao lưu toàn bộ dữ liệu người dùng & website (.JSON)!");
   });
 
   document.getElementById("import-site-data-file-input")?.addEventListener("change", (ev) => {
@@ -28370,25 +28662,80 @@ listContainer.querySelectorAll(".open-detail-btn").forEach((btn) => {
     reader.onload = () => {
       try {
         const parsed = JSON.parse(String(reader.result || "{}"));
+        if (parsed.rawStorageMirror && typeof parsed.rawStorageMirror === "object") {
+          Object.keys(parsed.rawStorageMirror).forEach((k) => {
+            if (parsed.rawStorageMirror[k] !== null && parsed.rawStorageMirror[k] !== undefined) {
+              localStorage.setItem(k, String(parsed.rawStorageMirror[k]));
+            }
+          });
+        }
         if (parsed.userProfile) {
           localStorage.setItem(USER_PROFILE_STORAGE_KEY, JSON.stringify(parsed.userProfile));
           syncUserProfileToForms(parsed.userProfile);
+        }
+        if (parsed.websiteData && typeof window.KhmerHeritageDB !== "undefined" && typeof window.KhmerHeritageDB.restoreSnapshot === "function") {
+          window.KhmerHeritageDB.restoreSnapshot(parsed.websiteData);
         }
         if (Array.isArray(parsed.favorites)) {
           localStorage.setItem("khmer_cakes_favorites", JSON.stringify(parsed.favorites));
         }
         if (Array.isArray(parsed.tastingPassport)) {
           localStorage.setItem("khmer_tasting_passport_v1", JSON.stringify(parsed.tastingPassport));
+          localStorage.setItem("khmer_cakes_tasted_passport", JSON.stringify(parsed.tastingPassport));
         }
+        if (parsed.preferencesAndKitchen && typeof parsed.preferencesAndKitchen === "object") {
+          const pk = parsed.preferencesAndKitchen;
+          if (pk.theme) localStorage.setItem("khmer_cakes_heritage_theme", pk.theme);
+          if (pk.fontScale) localStorage.setItem("khmer_cakes_font_scale", pk.fontScale);
+          if (pk.motionFx) localStorage.setItem("khmer_cakes_motion_fx", pk.motionFx);
+          if (pk.musicVolume) localStorage.setItem("khmer_heritage_music_volume_v2", pk.musicVolume);
+          if (Array.isArray(pk.menuTray)) localStorage.setItem("khmer_cakes_menu_tray", JSON.stringify(pk.menuTray));
+          if (Array.isArray(pk.fieldworkRecords)) localStorage.setItem("khmer_cakes_fieldwork_records", JSON.stringify(pk.fieldworkRecords));
+          if (Array.isArray(pk.tk123TrainingRules)) localStorage.setItem("khmer_cakes_tk123_custom_training", JSON.stringify(pk.tk123TrainingRules));
+          if (pk.dishChecklists) {
+            Object.keys(pk.dishChecklists).forEach((id) => {
+              localStorage.setItem("khmer_cakes_checked_" + id, JSON.stringify(pk.dishChecklists[id]));
+            });
+          }
+          if (pk.dishBatches) {
+            Object.keys(pk.dishBatches).forEach((id) => {
+              localStorage.setItem("khmer_cakes_batch_" + id, String(pk.dishBatches[id]));
+            });
+          }
+          if (pk.dishNotes) {
+            Object.keys(pk.dishNotes).forEach((id) => {
+              localStorage.setItem("khmer_cakes_note_" + id, JSON.stringify(pk.dishNotes[id]));
+            });
+          }
+        }
+        appendRuntimeLog("RESTORE_DATA_FROM_JSON", { fileName: file.name });
         refreshUserStorageModalStats();
-        updateLiveViewAndRatingBadges();
-        showAppToast("Đã khôi phục thông tin người dùng & dữ liệu website thành công!");
+        if (typeof updateLiveViewAndRatingBadges === "function") updateLiveViewAndRatingBadges();
+        if (typeof renderCommunityReviewsSection === "function") renderCommunityReviewsSection();
+        showAppToast("Đã khôi phục toàn bộ thông tin người dùng & dữ liệu website thành công!");
       } catch (err) {
         showAppToast("File JSON không hợp lệ, vui lòng kiểm tra lại!");
       }
     };
     reader.readAsText(file);
   });
+
+  // Tự động đồng bộ vào thư mục DuLieu_LuuTru_Website mỗi khi localStorage thay đổi
+  const originalSetItem = Storage.prototype.setItem;
+  let folderSyncTimer = null;
+  Storage.prototype.setItem = function (key, value) {
+    originalSetItem.apply(this, arguments);
+    if (key && !key.startsWith("khmer_cakes_runtime_activity_logs")) {
+      if (connectedDirectoryHandle) {
+        clearTimeout(folderSyncTimer);
+        folderSyncTimer = setTimeout(() => {
+          syncAllFilesToConnectedFolder(false);
+        }, 500);
+      }
+    }
+  };
+
+  appendRuntimeLog("PAGE_LOADED", { page: window.location.pathname.split("/").pop() || "index.html" });
 
   syncUserProfileToForms(getSavedUserProfile());
 
