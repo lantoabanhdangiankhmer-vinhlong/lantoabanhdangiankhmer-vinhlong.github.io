@@ -1759,7 +1759,7 @@ html[lang="km"] body {
 
             <div class="flex items-center gap-0.5 bg-white px-1 py-0.5 rounded-full border border-emerald-600/50 shadow-sm shrink-0" role="group" aria-label="Ngôn ngữ / ភាសា / Language">
               <button type="button" data-set-lang="vi" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0F4C3A] text-amber-200 transition-all" title="Tiếng Việt (Mặc định - VNĐ)">🇻🇳 Tiếng Việt</button>
-              <button type="button" data-set-lang="km" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-semibold text-stone-700 hover:bg-amber-50 transition-all" title="ភាសាខ្មែរ (Tiếng Khmer)">🇰🇭 ភាសាខ្មែរ</button>
+              <button type="button" data-set-lang="km" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-semibold text-stone-700 hover:bg-amber-50 transition-all" title="ភាសាខ្មែរ (Tiếng Khmer)">ភាសាខ្មែរ</button>
               <button type="button" data-set-lang="en" class="lang-switch-btn px-1.5 py-0.5 rounded-full text-[10px] font-semibold text-stone-700 hover:bg-amber-50 transition-all" title="American English (USD $ & US Culinary Terms)">🇺🇸 English (US)</button>
             </div>
 
@@ -5923,12 +5923,106 @@ function buildKhmerCakesSystemPrompt(dishesData) {
   );
 }
 
+function runTruongKhanhProDeepEngine(userQuery, dishesData) {
+  const raw = String(userQuery || "").trim();
+  if (!raw || !Array.isArray(dishesData) || dishesData.length === 0) return null;
+  const expanded = expandUserAbbreviations(raw);
+  const q = normalizeVnStr(expanded);
+  const isEn = window.currentAppLang === "en";
+  const isKm = window.currentAppLang === "km";
+
+  // 1. Gợi ý thực đơn / mâm bánh theo ngân sách hoặc số lượng khách
+  const budgetMatch = q.match(/(\d+)\s*(k|nghin|ngan|000|vnd|dong)/i);
+  const guestMatch = q.match(/(\d+)\s*(nguoi|khach|ban|mam|suat)/i);
+  if ((q.includes("thuc don") || q.includes("mam banh") || q.includes("goi y mam") || q.includes(" menu ") || budgetMatch) && (guestMatch || budgetMatch)) {
+    const guests = guestMatch ? Math.max(2, Math.min(200, parseInt(guestMatch[1], 10))) : 10;
+    const scale = Math.max(1, Math.ceil(guests / 4));
+    const comboDishes = [dishesData[0], dishesData[5], dishesData[6], dishesData[7]].filter(Boolean);
+    const totalEst = comboDishes.reduce((acc, d) => acc + (d.estimatedCostPerBaseBatch || 65000) * scale, 0);
+    if (isKm) {
+      return {
+        replyText: `🍱 **បញ្ជីមុខនំប្រពៃណីខ្មែរណែនាំដោយ ទ្រឿង ខាញ់ សម្រាប់ភ្ញៀវ ${guests} នាក់**៖
+` +
+          comboDishes.map((d, idx) => `${idx + 1}. **${d.name}** (${scale * (d.baseBatch || 4)} ${d.batchUnit}) — ~${formatVndCurrency((d.estimatedCostPerBaseBatch || 65000) * scale)}`).join("\n") +
+          `
+• **ចំណាយប៉ាន់ស្មានសរុប**៖ ~**${formatVndCurrency(totalEst)}** (សមស្របសម្រាប់ពិធីជួបជុំគ្រួសារ និងទទួលភ្ញៀវ)។`,
+        matchedIds: comboDishes.map((d) => d.id)
+      };
+    }
+    if (isEn) {
+      return {
+        replyText: `🍱 **Truong Khanh AI Curated Khmer Cake Platter for ${guests} Guests**:
+` +
+          comboDishes.map((d, idx) => `${idx + 1}. **${d.name}** (${scale * (d.baseBatch || 4)} ${d.batchUnit}) — ~${formatVndCurrency((d.estimatedCostPerBaseBatch || 65000) * scale)}`).join("\n") +
+          `
+• **Estimated Total Platter Cost**: ~**${formatVndCurrency(totalEst)}** (Balanced mix of steamed, roasted-grain, crispy-fried, and sweet coconut-broth cakes).`,
+        matchedIds: comboDishes.map((d) => d.id)
+      };
+    }
+    return {
+      replyText: `🍱 **Trường Khánh thiết kế Mâm Bánh Dân Gian Khmer chuẩn vị cho ${guests} khách**:
+` +
+        comboDishes.map((d, idx) => `${idx + 1}. **${d.name} (${d.qrCodeId})**: ${scale * (d.baseBatch || 4)} ${d.batchUnit} — ~**${formatVndCurrency((d.estimatedCostPerBaseBatch || 65000) * scale)}**`).join("\n") +
+        `
+• **Tổng chi phí dự kiến**: ~**${formatVndCurrency(totalEst)}** (Kết hợp hài hòa đủ 4 hương vị: hấp ống tre thơm lá dứa, cốm dẹp bùi béo, bánh chiên giòn rễ tre và bánh viên nếp ngọt thanh).`,
+      matchedIds: comboDishes.map((d) => d.id)
+    };
+  }
+
+  // 2. Tư vấn lịch trình trải nghiệm / du lịch làng nghề ẩm thực Khmer Vĩnh Long
+  if (q.includes("lich trinh") || q.includes("du lich") || q.includes("tham quan") || q.includes("lang nghe") || q.includes("tour") || q.includes("di dau")) {
+    return {
+      replyText: isKm
+        ? `🗺️ **ដំណើរកម្សាន្តភូមិសិប្បកម្មនំប្រពៃណីខ្មែរខេត្តវិញឡុង (ណែនាំដោយ ទ្រឿង ខាញ់)**៖
+• **ពេលព្រឹក (តំបន់ត្រាវិញ)**៖ ទស្សនាភូមិធ្វើអំបុក (Om Bóc) និងភ្លក់នំបំពង់ក្តៅៗ នំត្នោត និងនំគោ។
+• **ពេលថ្ងៃត្រង់ (តំបន់វិញឡុង)**៖ ភ្លក់នំលតផ្អែមត្រជាក់ចិត្ត និងនំស្លឹកវល្លិ៍ប្រពៃណី។
+• **ពេលរសៀល (តំបន់បេនត្រេ & បឹងបាអម)**៖ ទស្សនាភូមិនំស្លឹកចាក និងដើរកម្សាន្តជុំវិញបឹងបាអម។`
+        : isEn
+        ? `🗺️ **Truong Khanh's 1-Day Khmer Culinary Heritage Itinerary in Vinh Long**:
+• **Morning (Tra Vinh Zone)**: Visit the Om Boc flattened rice craft hamlet, enjoy hot Steamed Tube Cakes (Num Kong-pong) & Palmyra Sponge Cakes (Num Thnot).
+• **Midday (Vinh Long Zone)**: Cool down with Sweet Pandan Cendol (Num-lot) and Herbal Paederia Leaf Cakes.
+• **Afternoon (Ben Tre Zone & Ba Om Pond)**: Explore Giồng Luông Nipa-Leaf Cake village and stroll around Ba Om Pond heritage site.`
+        : `🗺️ **Gợi ý Lịch Trình Trải Nghiệm Làng Nghề Bánh Dân Gian Khmer Vĩnh Long (1 Ngày)** do **Trường Khánh** biên soạn:
+• **Buổi sáng (Không gian văn hóa Trà Vinh)**: Ghé làng nghề Cốm dẹp (Om Bóc) xã Vinh Kim, thưởng thức **Bánh ống (Num Kong-pong)** nóng hổi vừa rút khỏi ống tre và **Bánh thốt nốt (Num Thnot)** thơm lừng.
+• **Buổi trưa (Không gian văn hóa Vĩnh Long)**: Giải nhiệt với ly **Bánh lọt ngọt (Num-lot)** xanh mát chan nước cốt dừa và thưởng thức **Bánh lá mơ (Bánh nắn lá)** thảo mộc.
+• **Buổi chiều (Không gian văn hóa Bến Tre & Ao Bà Om)**: Trải nghiệm quấn **Bánh lá dừa** hình lò xo tại Giồng Luông và dạo mát tại danh thắng Ao Bà Om, chọn mua **Bánh gừng (Num Khnhây)** làm quà biếu.`,
+      matchedIds: [1, 2, 6, 10, 11, 12]
+    };
+  }
+
+  // 3. Tư vấn theo khẩu vị chuyên sâu (Giòn rụm / Béo dẻo / Thanh mát)
+  if (q.includes("thich gion") || q.includes("banh gion") || q.includes("chien gion") || (q.includes("gion") && q.includes("banh"))) {
+    return {
+      replyText: `✨ **Trường Khánh gợi ý nhóm bánh dân gian Khmer chiên giòn rụm, thơm béo**:
+` +
+        `1. **Bánh gừng (Num Khnhây — KH-03)**: Nhào hoàn toàn từ trứng vịt và bột nếp, chiên nở giòn rồi áo lớp đường thắng trắng ngần.
+` +
+        `2. **Bánh cần cù - Num ram (KH-04)**: Vỏ bột nếp nhào kỹ bọc nhân đậu xanh dừa, chiên vàng ruộm thơm phức.
+` +
+        `3. **Bánh ăn trộm (Num Chô — KH-05)**: Giòn xốp bên ngoài, dẻo thơm bên trong, gắn liền với đêm hội giã bột lễ cưới Khmer.
+` +
+        `4. **Bánh tai yến (KH-07)**: Vành bánh uốn lượn giòn tan như tổ yến, tâm bánh phồng mềm nhiều rễ tre.`,
+      matchedIds: [3, 4, 5, 7]
+    };
+  }
+
+  return null;
+}
+
 async function fetchTkAdvisorResponse(userQuery, dishesData, recentHistory = []) {
+  const proAnswer = runTruongKhanhProDeepEngine(userQuery, dishesData);
+  if (proAnswer) {
+    return {
+      replyText: proAnswer.replyText,
+      matchedIds: proAnswer.matchedIds,
+      sourceBadge: "Trường Khánh AI Pro"
+    };
+  }
   const localAnswer = generateTkAdvisorAnswer(userQuery, dishesData);
   return {
     replyText: localAnswer.replyText,
     matchedIds: localAnswer.matchedIds,
-    sourceBadge: "Trường Khánh"
+    sourceBadge: "Trường Khánh AI Pro"
   };
 }
 
@@ -5976,19 +6070,18 @@ function expandUserAbbreviations(rawInput) {
 
 function findMatchingDishesFuzzy(queryNorm, dishesData) {
   const aliasMap = {
-    1: ["banh tet", "tra cuon", "bu ngot", "bo ngot", "trung muoi", "cau ngang", "kim hoa", "kh-01", "mon 1"],
-    2: ["banh ong", "kong pong", "kong-pong", "ong tre", "ong inox", "kh-02", "mon 2"],
-    3: ["banh thot not", "thnaot", "num thnaot", "banh bo thot not", "u men", "re tre", "kh-03", "mon 3"],
-    4: ["banh gung", "khnhay", "num khnhay", "cu gung", "chol chnam", "kh-04", "mon 4"],
-    5: ["banh can cu", "can cu", "nhao ky", "phum soc", "kh-05", "mon 5"],
-    6: ["banh an trom", "an trom", "num cho", "le cuoi", "dam cuoi", "gia coi", "kh-06", "mon 6"],
-    7: ["com dep", "om boc", "ok om bok", "cung trang", "lua nep non", "ao ba om", "kh-07", "mon 7"],
-    8: ["banh tai yen", "tai yen", "to yen", "chien phong", "kh-08", "mon 8"],
-    9: ["banh num-co", "banh num co", "num co", "num - co", "num ko", "banh xep", "kh-09", "mon 9"],
-    10: ["banh dua", "om chiel", "phoi mau la dua", "kh-10", "mon 10"],
-    11: ["banh lot", "lot ngot", "num lot", "num-lot", "ep ro", "nuoc da lanh", "tra on", "vung liem", "kh-11", "mon 11"],
-    12: ["banh la mo", "la mo", "nan la", "la mit", "la dua can", "den bong", "muoi me", "kh-12", "mon 12"],
-    13: ["banh la dua", "la dua nuoc", "lo xo", "dau den", "giong luong", "kh-13", "mon 13"]
+    1: ["banh ong", "kong pong", "kong-pong", "num kong pong", "bampong", "ong tre", "ong inox", "នំបំពង់", "បំពង់", "kh-01", "mon 1"],
+    2: ["banh thot not", "thnot", "num thnot", "thnaot", "num thnaot", "banh bo thot not", "u men", "re tre", "នំត្នោត", "ត្នោត", "kh-02", "mon 2"],
+    3: ["banh gung", "khnhay", "num khnhay", "cu gung", "chol chnam", "នំខ្ញី", "ខ្ញី", "kh-03", "mon 3"],
+    4: ["banh can cu", "can cu", "num ram", "nhao ky", "phum soc", "នំរាំ", "kh-04", "mon 4"],
+    5: ["banh an trom", "an trom", "num cho", "le cuoi", "dam cuoi", "gia coi", "នំចោរ", "kh-05", "mon 5"],
+    6: ["com dep", "om boc", "om bok", "ok om bok", "cung trang", "lua nep non", "ao ba om", "អំបុក", "kh-06", "mon 6"],
+    7: ["banh tai yen", "tai yen", "to yen", "chien phong", "trachiak kam", "នំត្រចៀកកាំ", "ត្រចៀកកាំ", "kh-07", "mon 7"],
+    8: ["banh num-co", "banh num co", "num co", "num - co", "num ko", "banh vien", "នំគោ", "kh-08", "mon 8"],
+    9: ["banh dua", "om chiel", "phoi mau la dua", "នំស្លឹកតយ", "អំជៀល", "kh-09", "mon 9"],
+    10: ["banh lot", "lot ngot", "num lot", "num-lot", "ep ro", "nuoc da lanh", "tra on", "vung liem", "នំលតផ្អែម", "នំលត", "kh-10", "mon 10"],
+    11: ["banh la mo", "la mo", "nan la", "banh nan la", "la mit", "la dua can", "den bong", "muoi me", "នំស្លឹកវល្លិ៍", "kh-11", "mon 11"],
+    12: ["banh la dua", "la dua nuoc", "lo xo", "dau den", "giong luong", "num kom", "នំស្លឹកចាក", "នំគម", "kh-12", "mon 12"]
   };
 
   const results = [];
@@ -6089,7 +6182,7 @@ Mình được huấn luyện để giải đáp đầy đủ mọi câu hỏi v
    • **5. Festival Calendar & Quiz**: Khmer festival calendar (Chol Chnam Thmay, Sene Dolta, Ok Om Bok), Tasting Passport, and cultural quiz.
    • **6. Truong Khanh AI Smart Hub**: Recipe scaling, business profit calculator, pantry matcher, and confidentiality-protected AI Q&A.
 3. **User Info & Website Data Storage**: Click **"Lưu Trữ" (Storage)** on the top bar to save your user profile, view live stats (**${siteViewsNow}** web views, **${dishViewsNow}** dish views), or export/import JSON backups.
-4. **100% Trilingual Support**: Instant switching between **Vietnamese (🇻🇳) • 100% Khmer (🇰🇭) • English (🇺🇸)**.`
+4. **100% Trilingual Support**: Instant switching between **Vietnamese (🇻🇳) • 100% Khmer (ភាសាខ្មែរ) • English (🇺🇸)**.`
         : isKm
         ? `🌐 **មគ្គុទ្ទេសក៍ពេញលេញអំពីគេហទំព័រ "ការផ្សព្វផ្សាយនំប្រពៃណីខ្មែរខេត្តវិញឡុង" (កំណែ ២០២៦)**
 
@@ -6113,7 +6206,7 @@ Mình được huấn luyện để giải đáp đầy đủ mọi câu hỏi v
    • **5. Lễ Hội & Đố Vui**: Lịch lễ hội Khmer (Chol Chnam Thmay, Sene Dolta, Ok Om Bok), Hộ chiếu ẩm thực & Trắc nghiệm.
    • **6. Trợ Lý Trường Khánh (AI)**: Tính nguyên liệu theo mẻ, tính lời lãi kinh doanh, tìm bánh theo tủ bếp, thiết kế Poster & Hỏi đáp AI có khiên bảo mật.
 3. **Trung tâm Lưu trữ Người dùng & Dữ liệu Website**: Bấm nút **"Lưu Trữ"** trên thanh đầu trang để lưu hồ sơ cá nhân, theo dõi thống kê trực tiếp (**${siteViewsNow}** lượt xem web, **${dishViewsNow}** lượt xem món) và xuất/nhập file sao lưu \`.JSON\`.
-4. **Đa ngôn ngữ 100%**: Chuyển đổi tức thì **Tiếng Việt (🇻🇳) • Tiếng Khmer 100% (🇰🇭) • Tiếng Anh (🇺🇸)**.`,
+4. **Đa ngôn ngữ 100%**: Chuyển đổi tức thì **Tiếng Việt (🇻🇳) • Tiếng Khmer 100% (ភាសាខ្មែរ) • Tiếng Anh (🇺🇸)**.`,
       matchedIds: [1, 4, 10, 12]
     };
   }
