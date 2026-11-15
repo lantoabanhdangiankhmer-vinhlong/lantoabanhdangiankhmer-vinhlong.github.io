@@ -1,0 +1,19 @@
+================================================================================
+THƯ MỤC LƯU TRỮ DỮ LIỆU WEBSITE: DuLieu_LuuTru_Website
+Dự án: Lan toả bánh dân gian Khmer Vĩnh Long
+================================================================================
+
+1. DANH SÁCH CÁC TỆP DỮ LIỆU TRONG THƯ MỤC NÀY:
+   - 01_TongHop_ToanBo_DuLieu_Web.json   : Bản chụp (Snapshot) toàn bộ dữ liệu chạy web (dùng để sao lưu & khôi phục 1 chạm).
+   - 02_HoSo_NguoiDung.json              : Lưu họ tên, vai trò, khu vực yêu thích, trường/đơn vị và ghi chú ẩm thực.
+   - 03_ThongKe_LuotXem_Va_DanhGia.json  : Lưu tổng lượt xem web, lượt xem từng món trong 12 món bánh, đánh giá sao, bình luận, phản hồi và lượt thả cảm xúc.
+   - 04_SoTay_Bep_Va_MonYeuThich.json    : Lưu danh sách món yêu thích, hộ chiếu ẩm thực, mâm bánh, checklist nguyên liệu, mẻ bánh, ghi chú bếp, giao diện Sáng/Ấm/Tối và âm lượng nhạc.
+   - 05_NhatKy_ChayWeb_Log.json          : Lưu nhật ký hoạt động thời gian thực khi người dùng chạy website.
+
+2. CÁCH KẾT NỐI ĐỂ WEBSITE TỰ ĐỘNG LƯU VÀO THƯ MỤC NÀY:
+   - Bước 1: Giải nén file ZIP dự án ra máy tính.
+   - Bước 2: Mở file `index.html` trên trình duyệt (Chrome, Edge, Cốc Cốc...).
+   - Bước 3: Bấm nút "Lưu Trữ" trên thanh đầu trang.
+   - Bước 4: Bấm nút "Chọn Thư Mục Tự Động Lưu" và chọn đúng thư mục `DuLieu_LuuTru_Website` này (chọn Cho phép / Allow).
+   - Từ lúc đó, mọi thao tác trên website sẽ tự động được ghi đè trực tiếp vào 5 tệp .JSON trong thư mục này theo thời gian thực.
+================================================================================
